@@ -109,25 +109,23 @@ const HERO_TAGS = [
 function HeroFloat() {
   const reduced = typeof window !== 'undefined' &&
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // pre-compute deterministic-ish placements so layout stays stable across renders
   const items = React.useMemo(() => {
-    // place tags only in the left or right margin columns so they never
-    // overlap the centered headline / subscribe form
     return HERO_TAGS.map((tag, i) => {
       const seed = (n) => (Math.sin((i + 1) * n) + 1) / 2;
-      const onRight = i % 2 === 0;
-      // left column: 2–22 vw, right column: 78–98 vw
-      const left = onRight ?
-      78 + seed(12.9898) * 20 :
-      2 + seed(12.9898) * 20;
-      const top = 8 + seed(78.233) * 84; // 8–92 % of hero
-      const drift = 14 + seed(43.7) * 22;
-      const dur = 9 + seed(91.13) * 8;
+      // distribute across the FULL width — some will cross the headline
+      const left = 4 + seed(12.9898) * 92;
+      const top = 6 + seed(78.233) * 88;
+      const drift = 14 + seed(43.7) * 28;
+      const dur = 9 + seed(91.13) * 9;
       const delay = -seed(31.7) * dur;
-      const rot = (seed(57.3) - 0.5) * 8;
+      const rot = (seed(57.3) - 0.5) * 10;
       const size = 11 + Math.round(seed(11.1) * 3);
-      const opacityClass = i % 5 === 0 ? 'tag-bright' : i % 3 === 0 ? 'tag-mid' : 'tag-dim';
-      return { ...tag, left, top, drift, dur, delay, rot, size, opacityClass, key: i };
+      // motion variants — some drift, some pulse, one types
+      const motion = i % 7 === 0 ? 'pulse' : i % 11 === 0 ? 'type' : 'drift';
+      // brightness — most are extremely dim so they read as wallpaper,
+      // a few brights act as anchors
+      const opacityClass = i % 6 === 0 ? 'tag-bright' : i % 3 === 0 ? 'tag-mid' : 'tag-dim';
+      return { ...tag, left, top, drift, dur, delay, rot, size, motion, opacityClass, key: i };
     });
   }, []);
   return (
@@ -135,7 +133,7 @@ function HeroFloat() {
       {items.map((it) =>
       <span
         key={it.key}
-        className={`hero-tag hero-tag-${it.k} ${it.opacityClass} ${reduced ? 'no-anim' : ''}`}
+        className={`hero-tag hero-tag-${it.k} ${it.opacityClass} hero-tag-${it.motion} ${reduced ? 'no-anim' : ''}`}
         style={{
           left: `${it.left}%`,
           top: `${it.top}%`,
@@ -145,7 +143,7 @@ function HeroFloat() {
           '--delay': `${it.delay}s`,
           '--rot': `${it.rot}deg`
         }}>
-        
+
           {it.k === 'ref' ? <span className="tag-prefix">↗ </span> : null}
           {it.k === 'big-o' ? <span className="tag-prefix">{'∑ '}</span> : null}
           {it.k === 'pattern' ? <span className="tag-prefix">{'// '}</span> : null}
@@ -160,27 +158,43 @@ function HeroFloat() {
 
 /* ============ hero ============ */
 function Hero() {
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
   return (
     <section className="hero" id="top">
       <HeroFloat />
-      <div className="shell" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="fade-up in">
-          <span className="eyebrow"><span className="dot"></span>a daily routine, not another newsletter</span>
-        </div>
-        <h1 className="headline fade-up in d1" style={{ fontSize: "64px", maxWidth: "891px", marginLeft: "auto", marginRight: "auto" }}>
-          Stop planning your prep.
-          <span className="muted-line" style={{ fontSize: "64px" }}><em>Just open today's email.</em></span>
-        </h1>
-        <p className="lede fade-up in d2">
-          Two or three DSA problems. One curated engineering deep-dive. Every morning.
-          We pick what you do — you just do it.
-        </p>
-        <div className="fade-up in d3" id="subscribe">
-          <SubscribeForm />
-          <p className="fineprint" style={{ textAlign: 'center', margin: 0 }}>
-            Free. Unsubscribe in one click. No spam.
+      <div className="shell hero-grid">
+        <div className="hero-left">
+          <div className="fade-up in hero-marker">
+            <span className="hero-marker-rule"></span>
+            <span>ISSUE TOMORROW · {dateStr} + 1</span>
+          </div>
+          <h1 className="headline fade-up in d1">
+            Stop planning<br/>
+            <span>your prep.</span>
+            <span className="muted-line"><em>Just open today's email.</em></span>
+          </h1>
+          <p className="lede fade-up in d2">
+            Two or three DSA problems. One curated engineering deep-dive.
+            Every morning. <em>We pick what you do — you just do it.</em>
           </p>
         </div>
+        <aside className="hero-right fade-up in d3" id="subscribe">
+          <div className="hero-card">
+            <div className="hero-card-stamp">
+              <span className="stamp-k">no.</span>
+              <span className="stamp-v">043</span>
+            </div>
+            <div className="hero-card-label">SUBSCRIBE</div>
+            <h3 className="hero-card-h">Tomorrow's issue, <em>7am sharp.</em></h3>
+            <SubscribeForm />
+            <p className="fineprint hero-fine">
+              <span>✓ Free</span>
+              <span>✓ One-click unsubscribe</span>
+              <span>✓ No spam, ever</span>
+            </p>
+          </div>
+        </aside>
       </div>
     </section>);
 
@@ -197,17 +211,17 @@ function Inside() {
         </div>
         <div className="card-grid">
           <div className="card fade-up d1">
-            <span className="badge badge-blue">DSA</span>
+            <span className="badge" data-num="01">DSA</span>
             <h3>2–3 problems</h3>
             <p>Curated from Leetcode 75 and 150. Sequenced by topic and difficulty — not random.</p>
           </div>
           <div className="card fade-up d2">
-            <span className="badge badge-green">DEEP DIVE</span>
-            <h3 style={{ fontFamily: "\"Instrument Serif\"" }}>Engineering articles</h3>
+            <span className="badge" data-num="02">Deep dive</span>
+            <h3>Engineering articles</h3>
             <p>From Netflix, Stripe, Cloudflare and friends. Picked to pair with the day's problems.</p>
           </div>
           <div className="card fade-up d3">
-            <span className="badge badge-amber">CONTEXT</span>
+            <span className="badge" data-num="03">Context</span>
             <h3>Why it matters</h3>
             <p>A line on what to look for and which pattern this belongs to. No fluff.</p>
           </div>
@@ -325,21 +339,14 @@ function SourcesShowcase() {
           </div>
         </div>
 
-        {/* stats strip */}
-        <div className="stats-row fade-up d3">
-          <div className="stat">
-            <div className="stat-num">50+</div>
-            <div className="stat-label">engineering blogs</div>
-          </div>
-          <div className="stat">
-            <div className="stat-num">3 - 5</div>
-            <div className="stat-label">picked per morning</div>
-          </div>
-          <div className="stat">
-            <div className="stat-num">0</div>
-            <div className="stat-label">marketing fluff</div>
-          </div>
-        </div>
+        <blockquote className="pullquote fade-up d3">
+          <span className="pq-mark">“</span>
+          <p>
+            Not another aggregator. A short, opinionated brief — paired so the
+            article you read in the morning <em>is the same idea</em> as the
+            problem you solved over coffee.
+          </p>
+        </blockquote>
       </div>
     </section>);
 
@@ -376,33 +383,89 @@ function HowItWorks() {
 /* ============ sample issue ============ */
 function Sample() {
   return (
-    <section id="sample">
+    <section id="sample" className="sample-section">
       <div className="shell">
-        <div className="fade-up">
-          <div className="section-label">A REAL ISSUE</div>
-          <h2 className="section-title">Here's what landed in inboxes <em>last Tuesday.</em></h2>
+        <div className="fade-up sample-intro">
+          <div className="section-label">A REAL ISSUE — TUE, MAY 5</div>
+          <h2 className="section-title">
+            7:00am. <em>This lands in your inbox.</em>
+            <span className="muted-line">You skim it on the train. That's the whole thing.</span>
+          </h2>
         </div>
-        <div className="sample-wrap fade-up d1">
-          <div className="sample">
-            <div className="sample-head">
-              <div className="sample-head-left">Issue #042 · Sliding Window, Day 3</div>
-              <div className="sample-head-right">Tue, May 5</div>
+
+        <div className="mailwin fade-up d1">
+          <div className="mailwin-chrome">
+            <div className="mailwin-dots">
+              <span style={{ background: '#ff5f57' }}></span>
+              <span style={{ background: '#febc2e' }}></span>
+              <span style={{ background: '#28c840' }}></span>
             </div>
-            <div className="sample-body">
-              <div className="sample-block">
-                <div className="sample-label blue">DSA</div>
-                <div className="sample-line"><span className="sample-arrow">→</span>Longest Substring Without Repeating Characters <span className="meta">(Medium, ~20m)</span></div>
-                <div className="sample-line"><span className="sample-arrow">→</span>Minimum Window Substring <span className="meta">(Hard, ~35m — try, then peek)</span></div>
-              </div>
-              <div className="sample-block">
-                <div className="sample-label green">READ</div>
-                <div className="sample-line"><span className="sample-arrow">→</span>How Cloudflare Sizes Connection Pools <span className="meta">(Cloudflare Engineering, ~12m)</span></div>
-              </div>
-              <div className="sample-block">
-                <div className="sample-label amber">CONTEXT</div>
-                <div className="sample-line dim">Both problems are sliding-window with a hashmap. The Cloudflare piece is the same idea at infrastructure scale — a window over connections instead of characters.</div>
-              </div>
+            <div className="mailwin-addr">inbox · dailydiff.dev</div>
+            <div className="mailwin-spacer"></div>
+          </div>
+
+          <div className="mailwin-meta">
+            <div className="mail-row"><span className="mail-k">From</span><span className="mail-v">dailydiff &lt;mornings@dailydiff.dev&gt;</span></div>
+            <div className="mail-row"><span className="mail-k">To</span><span className="mail-v">you@work.dev</span></div>
+            <div className="mail-row"><span className="mail-k">Subject</span><span className="mail-v mail-subject">Issue #042 — Sliding Window, Day 3</span></div>
+            <div className="mail-row"><span className="mail-k">Date</span><span className="mail-v">Tue, May 5 · 07:00 IST</span></div>
+          </div>
+
+          <div className="mailwin-body">
+            <p className="mail-greet">Morning —</p>
+            <p className="mail-lede">
+              Two problems and one article. Both problems are the same shape —
+              a window of characters you grow and shrink. The article is the
+              same idea, scaled up to infrastructure.
+            </p>
+
+            <div className="mail-section">
+              <div className="mail-section-label"><span className="mail-num">01</span> DSA · ~55 min</div>
+              <ol className="mail-list">
+                <li>
+                  <a className="mail-link">Longest Substring Without Repeating Characters</a>
+                  <span className="mail-meta">Medium · ~20m · leetcode #3</span>
+                </li>
+                <li>
+                  <a className="mail-link">Minimum Window Substring</a>
+                  <span className="mail-meta">Hard · ~35m · try, then peek · leetcode #76</span>
+                </li>
+              </ol>
             </div>
+
+            <div className="mail-section">
+              <div className="mail-section-label"><span className="mail-num">02</span> Read · ~12 min</div>
+              <ol className="mail-list">
+                <li>
+                  <a className="mail-link">How Cloudflare sizes connection pools</a>
+                  <span className="mail-meta">blog.cloudflare.com · networking</span>
+                </li>
+              </ol>
+            </div>
+
+            <div className="mail-section">
+              <div className="mail-section-label"><span className="mail-num">03</span> Context</div>
+              <p className="mail-context">
+                Both problems are sliding-window with a hashmap — you keep a
+                count of what's in the window and adjust the left edge when
+                an invariant breaks. The Cloudflare piece is the <em>same
+                idea at infrastructure scale</em>: a window over open
+                connections instead of characters. Read it after problem two.
+              </p>
+            </div>
+
+            <p className="mail-signoff">
+              That's it. See you tomorrow.<br/>
+              <span className="mail-sign">— d/d</span>
+            </p>
+          </div>
+
+          <div className="mailwin-foot">
+            <span>unsubscribe</span>
+            <span>·</span>
+            <span>view in browser</span>
+            <span>·</span>
+            <span>archive</span>
           </div>
         </div>
       </div>
@@ -413,13 +476,24 @@ function Sample() {
 /* ============ footer cta ============ */
 function FooterCTA() {
   return (
-    <section className="tight">
+    <section className="closing">
       <div className="shell">
-        <div className="cta-panel fade-up">
-          <h2>One email. <em>Tomorrow morning.</em></h2>
-          <p className="subtitle">That's the whole pitch.</p>
-          <div style={{ maxWidth: 460, margin: '0 auto' }}>
+        <div className="closing-inner fade-up">
+          <div className="closing-rule">
+            <span></span><span className="closing-rule-mark">§</span><span></span>
+          </div>
+          <h2 className="closing-h">
+            One email.<br/>
+            <em>Tomorrow morning.</em>
+          </h2>
+          <p className="closing-sub">That's the whole pitch.</p>
+          <div className="closing-form">
             <SubscribeForm ctaLabel="Subscribe" />
+          </div>
+          <div className="closing-foot">
+            <span>FREE</span><span>·</span>
+            <span>UNSUBSCRIBE IN ONE CLICK</span><span>·</span>
+            <span>NEVER A SECOND EMAIL</span>
           </div>
         </div>
       </div>
@@ -485,10 +559,10 @@ function App() {
       {t.backgroundFx && <window.BackgroundFX />}
       <Nav />
       <Hero />
+      <Sample />
       <Inside />
       <SourcesShowcase />
       <HowItWorks />
-      <Sample />
       <FooterCTA />
       <Footer />
 
