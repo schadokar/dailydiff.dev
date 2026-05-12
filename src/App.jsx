@@ -21,7 +21,7 @@ export default function App() {
         <HowItWorks />
         <Features />
         <NonFeatures />
-        <Positioning />
+        {/* <Positioning /> */}
         <Signup />
       </main>
       <Footer />

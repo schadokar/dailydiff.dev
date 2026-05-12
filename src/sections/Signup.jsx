@@ -24,7 +24,7 @@ export default function Signup() {
     <section className="signup" id="signup" aria-labelledby="signup-title">
       <div className="signup__block">
         <h2 className="signup__title" id="signup-title">Get tomorrow's plan.</h2>
-        <p className="signup__sub">One email. Mon–Fri. 7am IST.</p>
+        <p className="signup__sub">One email. Every day. 7am IST.</p>
 
         {status === 'success' ? (
           <p className="signup__success">

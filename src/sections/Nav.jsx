@@ -4,7 +4,6 @@ import Button from '../components/Button.jsx';
 const links = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'What you get', href: '#features' },
-  { label: 'Why this',     href: '#positioning' },
   { label: 'Sign up',      href: '#signup' },
 ];
 

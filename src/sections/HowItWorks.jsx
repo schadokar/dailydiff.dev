@@ -7,7 +7,7 @@ export default function HowItWorks() {
     },
     {
       num: '02',
-      title: 'Email lands at 7am IST, Mon–Fri.',
+      title: 'Email lands at 7am IST, every day.',
       body: 'Same issue for everyone in V1. No per-user state, no personalisation tax.',
     },
     {

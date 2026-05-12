@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero__meta">
         <Tag variant="soon">pre-launch</Tag>
-        <Tag variant="muted">Mon–Fri · 7am IST</Tag>
+        <Tag variant="muted">Daily · 7am IST</Tag>
       </div>
 
       <h1 className="hero__title" id="hero-title">
@@ -23,7 +23,7 @@ export default function Hero() {
       <p className="hero__sub">
         DailyDiff is a daily email that tells you exactly what to study today.
         2–3 DSA problems, 2–3 curated engineering articles, and one sentence of
-        context on why they fit — delivered Mon–Fri at 7am IST.
+        context on why they fit — delivered daily at 7am IST.
       </p>
 
       <div className="hero__ctas">
