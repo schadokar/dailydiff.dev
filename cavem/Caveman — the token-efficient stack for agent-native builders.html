@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)https://getcaveman.dev/ -->
+<html lang="en" style="--acc-h: 73; --acc-c: 0.15;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caveman — the token-efficient stack for agent-native builders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link rel="stylesheet" href="./Caveman — the token-efficient stack for agent-native builders_files/css2">
+<link rel="stylesheet" href="./Caveman — the token-efficient stack for agent-native builders_files/styles.css">
+<link rel="icon" type="image/svg+xml" href="https://getcaveman.dev/favicon.svg">
+<link rel="apple-touch-icon" href="https://getcaveman.dev/favicon.svg">
+<meta name="theme-color" content="#0b0a08">
+</head>
+<body data-humor="cave" data-density="comfortable" data-grain="1">
+<script>
+  // Tweakable defaults (accent hue + section rhythm). Persisted by host.
+  window.__TWEAKS = /*EDITMODE-BEGIN*/{
+    "accentHue": 73,
+    "accentChroma": 0.15,
+    "grainOn": true,
+    "humorLevel": "cave",
+    "density": "comfortable"
+  }/*EDITMODE-END*/;
+</script>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="https://getcaveman.dev/#top" aria-label="Caveman home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+        <!-- simple ember glyph: triangle + dot -->
+        <path d="M4 26 L16 6 L28 26 Z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+        <circle cx="16" cy="20" r="2.2" fill="currentColor"></circle>
+      </svg>
+      <span class="brand__word">CAVEMAN</span>
+      <span class="brand__dot">·</span>
+      <span class="brand__sub">ECOSYSTEM</span>
+    </a>
+    <nav class="nav__links" id="primary-nav" aria-label="Primary">
+      <a href="https://getcaveman.dev/#ecosystem">Ecosystem</a>
+      <a href="https://getcaveman.dev/#caveman">Caveman</a>
+      <a href="https://getcaveman.dev/#cavekit">Cavekit</a>
+      <a href="https://getcaveman.dev/#cavemem">Cavemem</a>
+      <a href="https://getcaveman.dev/#code">Caveman Code <span class="nav__soon" aria-hidden="true">soon</span></a>
+      <a href="https://getcaveman.dev/#why">Why</a>
+      <a href="https://getcaveman.dev/#architecture">Architecture</a>
+      <div class="nav__drawer-cta" aria-hidden="false">
+        <a class="btn btn--ghost" href="https://github.com/JuliusBrussee" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn--solid" href="https://getcaveman.dev/#code">Preview Caveman Code →</a>
+      </div>
+    </nav>
+    <div class="nav__cta">
+      <a class="btn btn--ghost btn--icon-only-sm" href="https://github.com/JuliusBrussee" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 .2a8 8 0 0 0-2.53 15.6c.4.07.55-.17.55-.38v-1.3c-2.22.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.72 1.23 1.88.87 2.34.67.07-.52.28-.88.5-1.08-1.78-.2-3.64-.89-3.64-3.96 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.08-1.87 3.76-3.65 3.96.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2z"></path></svg>
+        <span class="btn__label">GitHub</span>
+      </a>
+      <a class="btn btn--solid btn--cta-nav" href="https://getcaveman.dev/#code"><span class="btn__label-full">Preview Caveman Code →</span><span class="btn__label-short">Preview →</span></a>
+    </div>
+    <button class="nav__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+  </div>
+  <div class="nav__scrim" aria-hidden="true"></div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero__meta">
+    <span class="tag tag--soon">Caveman Code · coming soon</span>
+    <span class="tag tag--muted">37,500 ★ across the stack</span>
+  </div>
+
+  <h1 class="hero__title">
+    The token-efficient stack<br>
+    for <span class="ital">agent-native</span> development.
+  </h1>
+
+  <p class="hero__joke">
+    <span class="joke__label">[thesis]</span>
+    why many token when few do trick.
+  </p>
+
+  <p class="hero__sub">
+    Caveman is a three-part ecosystem for builders who treat tokens as a resource
+    worth designing around — a compression primitive, a spec-driven workflow,
+    and a coding agent CLI that stacks both.
+  </p>
+
+  <div class="hero__ctas">
+    <a class="btn btn--solid btn--soon btn--lg" href="https://getcaveman.dev/#code">
+      <span>Caveman Code · shipping soon</span>
+      <code class="btn__code">preview →</code>
+    </a>
+    <a class="btn btn--ghost btn--lg" href="https://getcaveman.dev/#ecosystem">Explore the ecosystem</a>
+  </div>
+
+  <!-- Hero visual: ecosystem flow diagram -->
+  <div class="hero__visual" aria-hidden="true">
+    <div class="diagram">
+      <header class="diagram__head">
+        <span class="diagram__title">ECOSYSTEM · INPUT → OUTPUT</span>
+        <span class="diagram__legend">
+          <i class="dot dot--raw"></i> raw &nbsp;
+          <i class="dot dot--acc"></i> compressed
+        </span>
+      </header>
+
+      <div class="diagram__grid">
+
+        <!-- IN -->
+        <div class="node node--in">
+          <span class="node__kicker">input</span>
+          <span class="node__title">your prompt &amp; context</span>
+          <div class="node__bar">
+            <i class="node__fill node__fill--raw" style="width:100%"></i>
+          </div>
+          <span class="node__meta">21,340 tok · 100%</span>
+        </div>
+
+        <div class="edge"><span>ingest</span></div>
+
+        <!-- CAVEMAN -->
+        <div class="node node--prim">
+          <span class="node__kicker">01 · primitive</span>
+          <span class="node__title">caveman</span>
+          <span class="node__sub">compression skill</span>
+          <div class="node__bar">
+            <i class="node__fill node__fill--acc" style="width:25%"></i>
+          </div>
+          <span class="node__meta">~75% reduction</span>
+        </div>
+
+        <div class="edge"><span>feeds</span></div>
+
+        <!-- CAVEKIT -->
+        <div class="node node--work">
+          <span class="node__kicker">02 · workflow</span>
+          <span class="node__title">cavekit</span>
+          <span class="node__sub">spec → plan → verify</span>
+          <div class="node__pipes">
+            <b>spec</b><em>→</em><b>plan</b><em>→</em><b>exec</b><em>→</em><b>verify</b>
+          </div>
+        </div>
+
+        <div class="edge"><span>recalls via</span></div>
+
+        <!-- CAVEMEM -->
+        <div class="node node--mem">
+          <span class="node__kicker">03 · memory</span>
+          <span class="node__title">cavemem</span>
+          <span class="node__sub">persistent · cross-agent</span>
+          <div class="node__pipes">
+            <b>index</b><em>→</em><b>search</b><em>→</em><b>recall</b>
+          </div>
+        </div>
+
+        <div class="edge"><span>stacks into</span></div>
+
+        <!-- CAVEMAN CODE -->
+        <div class="node node--flag">
+          <span class="node__kicker">04 · flagship</span>
+          <span class="node__title">caveman-code</span>
+          <span class="node__sub">agent CLI · 4× compression</span>
+          <div class="node__chips">
+            <span>L01 prompt</span>
+            <span>L02 RTK</span>
+            <span>L03 output</span>
+            <span>L04 context</span>
+          </div>
+          <span class="node__meta node__meta--acc">4,812 tok · 23% of baseline</span>
+        </div>
+      </div>
+
+      <footer class="diagram__foot">
+        <span>baseline: 21,340 tok</span>
+        <span class="muted">→</span>
+        <span>after stack: 4,812 tok</span>
+        <span class="muted">→</span>
+        <span class="acc">saved 77%</span>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Marquee strip -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>less waste</span><em>·</em>
+      <span>more signal</span><em>·</em>
+      <span>spec &gt; vibes</span><em>·</em>
+      <span>built in the open</span><em>·</em>
+      <span>MIT licensed</span><em>·</em>
+      <span>tokens are a resource</span><em>·</em>
+      <span>fewer words, same work</span><em>·</em>
+      <span>less waste</span><em>·</em>
+      <span>more signal</span><em>·</em>
+      <span>spec &gt; vibes</span><em>·</em>
+      <span>built in the open</span><em>·</em>
+      <span>MIT licensed</span><em>·</em>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECOSYSTEM OVERVIEW ============ -->
+<section id="ecosystem" class="section">
+  <div class="section__head">
+    <span class="eyebrow">§ 01 · Ecosystem</span>
+    <h2 class="section__title">Four projects. One thesis.</h2>
+    <p class="section__lede">
+      Caveman starts as a small compression primitive, becomes a workflow with
+      Cavekit, grows a memory with Cavemem, and lands as a full coding agent
+      CLI with Caveman Code. Each layer is useful on its own. Stacked, they
+      compound.
+    </p>
+  </div>
+
+  <div class="eco-grid">
+    <article class="eco-card eco-card--01" id="eco-caveman">
+      <header>
+        <span class="eco-card__num">01</span>
+        <span class="eco-card__role">primitive</span>
+      </header>
+      <h3>Caveman</h3>
+      <p>A compression skill that shrinks token footprint by roughly 75% without losing task fidelity. Portable, composable, boring in the best way.</p>
+      <ul class="eco-card__facts">
+        <li><span>reduction</span><b>~75%</b></li>
+        <li><span>stars</span><b>37,000</b></li>
+        <li><span>license</span><b>MIT</b></li>
+      </ul>
+      <a class="eco-card__link" href="https://getcaveman.dev/#caveman">Read the primitive →</a>
+    </article>
+
+    <div class="eco-join" aria-hidden="true">
+      <div class="eco-join__line"></div>
+      <span class="eco-join__label">consumed by</span>
+      <div class="eco-join__line"></div>
+    </div>
+
+    <article class="eco-card eco-card--02" id="eco-cavekit">
+      <header>
+        <span class="eco-card__num">02</span>
+        <span class="eco-card__role">workflow</span>
+      </header>
+      <h3>Cavekit</h3>
+      <p>Spec-driven development, pushed further. Turns a written spec into a structured plan, then into verifiable execution. Opinionated, not clever.</p>
+      <ul class="eco-card__facts">
+        <li><span>built on</span><b>Caveman</b></li>
+        <li><span>stars</span><b>500</b></li>
+        <li><span>surface</span><b>CLI + lib</b></li>
+      </ul>
+      <a class="eco-card__link" href="https://getcaveman.dev/#cavekit">See the workflow →</a>
+    </article>
+
+    <div class="eco-join" aria-hidden="true">
+      <div class="eco-join__line"></div>
+      <span class="eco-join__label">remembered by</span>
+      <div class="eco-join__line"></div>
+    </div>
+
+    <article class="eco-card eco-card--03" id="eco-cavemem">
+      <header>
+        <span class="eco-card__num">03</span>
+        <span class="eco-card__role">memory</span>
+      </header>
+      <h3>Cavemem</h3>
+      <p>A persistent, cross-agent memory layer. Local SQLite + FTS5 + vector search, Caveman-compressed, exposed via MCP. Your agents stop forgetting.</p>
+      <ul class="eco-card__facts">
+        <li><span>store</span><b>local SQLite</b></li>
+        <li><span>protocol</span><b>MCP</b></li>
+        <li><span>version</span><b>v0.1.3</b></li>
+      </ul>
+      <a class="eco-card__link" href="https://getcaveman.dev/#cavemem">Explore the memory →</a>
+    </article>
+
+    <div class="eco-join" aria-hidden="true">
+      <div class="eco-join__line"></div>
+      <span class="eco-join__label">stacked into</span>
+      <div class="eco-join__line"></div>
+    </div>
+
+    <article class="eco-card eco-card--04 eco-card--flag" id="eco-code">
+      <header>
+        <span class="eco-card__num">04</span>
+        <span class="eco-card__role">flagship</span>
+      </header>
+      <h3>Caveman Code</h3>
+      <p>A next-gen coding agent CLI built around four independent compression layers. Fewer tokens at every hop — prompt, commands, outputs, context.</p>
+      <ul class="eco-card__facts">
+        <li><span>layers</span><b>4×</b></li>
+        <li><span>status</span><b>preview</b></li>
+        <li><span>runtime</span><b>local</b></li>
+      </ul>
+      <a class="eco-card__link" href="https://getcaveman.dev/#code">Open the flagship →</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CAVEMAN ============ -->
+<section id="caveman" class="section section--split">
+  <div class="split__side">
+    <span class="eyebrow">§ 02 · Caveman</span>
+    <h2 class="section__title">The primitive. A skill that eats tokens for breakfast.</h2>
+    <p class="section__lede">
+      Caveman is a small, focused compression skill. Give it a prompt, a system
+      message, a long-form document, a CLAUDE.md — it returns something
+      semantically equivalent and dramatically shorter. No retraining. No
+      proprietary runtime. Plug it wherever tokens get spent.
+    </p>
+
+    <ul class="bullets">
+      <li><b>~75% fewer tokens</b> on typical agent workloads.</li>
+      <li><b>Model-agnostic.</b> Works upstream of whatever you're calling.</li>
+      <li><b>Deterministic</b> compression, with a dictionary you control.</li>
+      <li><b>Composable.</b> Pipe it. Chain it. Ignore it when you don't need it.</li>
+    </ul>
+
+    <div class="row">
+      <a class="btn btn--solid" href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn btn--ghost" href="https://getcaveman.dev/#architecture">Read the spec</a>
+    </div>
+  </div>
+
+  <div class="split__side split__side--visual">
+    <div class="terminal">
+      <div class="terminal__bar">
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__dot"></span>
+        <span class="terminal__title">caveman · compress.ts</span>
+      </div>
+      <pre class="terminal__body"><span class="tk-c">// before — 4,820 tokens</span>
+<span class="tk-k">const</span> prompt = <span class="tk-s">`You are an expert software engineer.
+When the user asks a question, think step
+by step, consider edge cases, and then ...`</span>;
+
+<span class="tk-c">// after — 1,204 tokens (-75%)</span>
+<span class="tk-k">const</span> prompt = caveman.compress(prompt, {
+  dict: <span class="tk-s">'eng/v1'</span>,
+  preserve: [<span class="tk-s">'examples'</span>, <span class="tk-s">'schema'</span>]
+});
+
+<span class="tk-c">// fidelity kept, bytes did not survive</span>
+</pre>
+    </div>
+
+    <div class="compare">
+      <div class="compare__col">
+        <span class="compare__label">before</span>
+        <div class="compare__block compare__block--before">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span class="compare__num">4,820 tok</span>
+      </div>
+      <div class="compare__arrow">⟶</div>
+      <div class="compare__col">
+        <span class="compare__label">after</span>
+        <div class="compare__block compare__block--after">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span class="compare__num">1,204 tok</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAVEKIT ============ -->
+<section id="cavekit" class="section section--split section--reverse">
+  <div class="split__side">
+    <span class="eyebrow">§ 03 · Cavekit</span>
+    <h2 class="section__title">Spec-driven development, taken seriously.</h2>
+    <p class="section__lede">
+      Cavekit is the workflow layer. Write a spec in prose, let Cavekit turn it
+      into a structured plan, then drive execution against it. It uses Caveman
+      internally so the plan and the context both stay lean.
+    </p>
+
+    <ul class="bullets">
+      <li><b>Specs, not vibes.</b> Every change is anchored to a written goal.</li>
+      <li><b>Plan before code.</b> Structured tasks with acceptance criteria.</li>
+      <li><b>Verifiable.</b> Each task has a check. Nothing ships on a hunch.</li>
+      <li><b>Iterative.</b> Specs evolve with the codebase, not against it.</li>
+    </ul>
+
+    <div class="row">
+      <a class="btn btn--solid" href="https://github.com/JuliusBrussee/cavekit" target="_blank" rel="noopener">Install Cavekit</a>
+      <a class="btn btn--ghost" href="https://getcaveman.dev/#architecture">See a sample spec</a>
+    </div>
+  </div>
+
+  <div class="split__side split__side--visual">
+    <div class="spec">
+      <div class="spec__head">
+        <span class="spec__tag">SPEC-024</span>
+        <span class="spec__title">payments · refund flow</span>
+        <span class="spec__status">ready</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">goal</span>
+        <span class="spec__v">Users can refund a completed order within 30 days of purchase.</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">scope</span>
+        <span class="spec__v">API + admin UI. Excludes partial refunds for v1.</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">plan</span>
+        <ol class="spec__list">
+          <li><span class="spec__chk">✓</span> migration: add <code>refunds</code> table</li>
+          <li><span class="spec__chk">✓</span> endpoint: <code>POST /orders/:id/refund</code></li>
+          <li><span class="spec__chk spec__chk--run">●</span> admin: refund button + confirm modal</li>
+          <li><span class="spec__chk spec__chk--todo">○</span> webhook: <code>refund.processed</code></li>
+          <li><span class="spec__chk spec__chk--todo">○</span> tests: edge cases + denial paths</li>
+        </ol>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">verify</span>
+        <span class="spec__v spec__v--mono">3/5 tasks · 62% · last build green</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAVEMEM ============ -->
+<section id="cavemem" class="section section--split">
+  <div class="split__side">
+    <span class="eyebrow">§ 04 · Cavemem</span>
+    <h2 class="section__title">Persistent memory. Cross-agent. Local-first.</h2>
+    <p class="section__lede">
+      Cavemem gives coding agents a memory that survives the session. It
+      captures observations, stores them compressed in a local SQLite index,
+      and serves them back through MCP — so Claude Code, Cursor, Codex, or
+      Gemini can all recall what the last agent learned.
+    </p>
+
+    <p class="hero__joke">
+      <span class="joke__label">[thesis]</span>
+      why agent forget when agent can remember.
+    </p>
+
+    <ul class="bullets">
+      <li><b>Persistent across sessions.</b> Stop re-explaining the codebase every turn.</li>
+      <li><b>Cross-IDE.</b> One memory, many agents. MCP tools: <code>search</code>, <code>timeline</code>, <code>get_observations</code>.</li>
+      <li><b>Compressed.</b> ~75% smaller via Caveman before it ever hits disk.</li>
+      <li><b>Local &amp; private.</b> SQLite + FTS5 + vector. Nothing leaves the box. <code>&lt;private&gt;</code> tags get stripped.</li>
+    </ul>
+
+    <div class="row">
+      <a class="btn btn--solid" href="https://github.com/JuliusBrussee/cavemem" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn btn--ghost" href="https://getcaveman.dev/#architecture">How it composes</a>
+    </div>
+  </div>
+
+  <div class="split__side split__side--visual">
+    <div class="spec">
+      <div class="spec__head">
+        <span class="spec__tag">MEM · RECALL</span>
+        <span class="spec__title">cavemem · search("refund flow")</span>
+        <span class="spec__status">indexed</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">query</span>
+        <span class="spec__v spec__v--mono">cavemem.search({ q: "refund flow", k: 4 })</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">hits</span>
+        <ol class="spec__list">
+          <li><span class="spec__chk">✓</span> <code>SPEC-024</code> refund flow · 2d ago · 0.94</li>
+          <li><span class="spec__chk">✓</span> <code>orders.test.ts</code> edge cases · 3d ago · 0.81</li>
+          <li><span class="spec__chk spec__chk--run">●</span> <code>CHANGELOG</code> v0.8 refunds · 11d ago · 0.62</li>
+          <li><span class="spec__chk spec__chk--todo">○</span> <code>chat</code> stripe webhook · 3w ago · 0.55</li>
+        </ol>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">store</span>
+        <span class="spec__v spec__v--mono">~/.cavemem/db.sqlite · 4,812 obs · 1.2MB</span>
+      </div>
+      <div class="spec__row">
+        <span class="spec__k">mcp</span>
+        <span class="spec__v">search · timeline · get_observations · viewer at :37777</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAVEMAN CODE ============ -->
+<section id="code" class="section section--flag">
+  <div class="flag__head">
+    <span class="eyebrow eyebrow--accent">§ 05 · Caveman Code · flagship</span>
+    <h2 class="section__title section__title--xl">
+      A coding agent CLI<br>
+      with <span class="ital">four</span> compression layers.
+    </h2>
+    <div class="flag__status">
+      <span class="soon soon--lg">shipping soon</span>
+      <span class="flag__status-text">Not yet installable. The design is locked, the layers are wired, and the install commands below are a preview of what lands when it ships.</span>
+    </div>
+    <p class="section__lede section__lede--wide">
+      Most coding agents pay the token tax everywhere: bloated prompts, verbose
+      tool calls, chatty outputs, sprawling context files. Caveman Code
+      squeezes each of those independently, then stacks them. The result is a
+      CLI that feels fast, cheap, and deliberate.
+    </p>
+  </div>
+
+  <div class="layers">
+    <div class="layers__spine" aria-hidden="true"></div>
+
+    <article class="lyr">
+      <div class="lyr__num">L01</div>
+      <div class="lyr__body">
+        <h3>Prompt input compression</h3>
+        <p>User prompts are normalized and shrunk before they ever hit the model. Same intent, less surface area.</p>
+        <div class="lyr__kv"><span>reduces</span><b>user → model prompt</b></div>
+      </div>
+      <div class="lyr__viz">
+        <div class="bar bar--in"><i style="width:92%"></i><span>input</span></div>
+        <div class="bar bar--out"><i style="width:31%"></i><span>compressed</span></div>
+      </div>
+    </article>
+
+    <article class="lyr">
+      <div class="lyr__num">L02</div>
+      <div class="lyr__body">
+        <h3>RTK command compression</h3>
+        <p>Tool and command calls are routed through a Reduced Token Kernel — a compact grammar for frequently-used actions.</p>
+        <div class="lyr__kv"><span>reduces</span><b>tool call payloads</b></div>
+      </div>
+      <div class="lyr__viz">
+        <div class="bar bar--in"><i style="width:78%"></i><span>raw call</span></div>
+        <div class="bar bar--out"><i style="width:18%"></i><span>rtk</span></div>
+      </div>
+    </article>
+
+    <article class="lyr">
+      <div class="lyr__num">L03</div>
+      <div class="lyr__body">
+        <h3>Output compression via Caveman</h3>
+        <p>Model outputs — plans, diffs, explanations — pass through the Caveman primitive before rendering or being fed back in.</p>
+        <div class="lyr__kv"><span>reduces</span><b>assistant outputs</b></div>
+      </div>
+      <div class="lyr__viz">
+        <div class="bar bar--in"><i style="width:88%"></i><span>output</span></div>
+        <div class="bar bar--out"><i style="width:24%"></i><span>compressed</span></div>
+      </div>
+    </article>
+
+    <article class="lyr">
+      <div class="lyr__num">L04</div>
+      <div class="lyr__body">
+        <h3>Context &amp; CLAUDE.md compression</h3>
+        <p>Long-form agent context — instructions, repo maps, style guides — is compiled once and cached as a dense Caveman artifact.</p>
+        <div class="lyr__kv"><span>reduces</span><b>long-lived context</b></div>
+      </div>
+      <div class="lyr__viz">
+        <div class="bar bar--in"><i style="width:96%"></i><span>CLAUDE.md</span></div>
+        <div class="bar bar--out"><i style="width:22%"></i><span>cached</span></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="cli">
+    <div class="cli__bar">
+      <span class="terminal__dot"></span>
+      <span class="terminal__dot"></span>
+      <span class="terminal__dot"></span>
+      <span class="terminal__title">~/projects/acme · caveman-code</span>
+      <span class="cli__soon">preview · coming soon</span>
+    </div>
+    <pre class="cli__body"><span class="tk-p">$</span> caveman-code "add a refund endpoint per SPEC-024"
+
+<span class="tk-m">▸ load context</span>   <span class="muted">CLAUDE.md → 18.4k → 3.9k (L04)</span>
+<span class="tk-m">▸ compile prompt</span> <span class="muted">user → L01 → 0.3k</span>
+<span class="tk-m">▸ plan</span>           <span class="muted">5 tasks · 62% covered by spec</span>
+<span class="tk-m">▸ edit</span>           <span class="muted">apps/api/orders/refund.ts</span>
+<span class="tk-m">▸ run</span>            <span class="muted">pnpm test --filter orders   </span><span class="ok">✓ 41 passing</span>
+
+<span class="tk-p">→</span> done in <b>00:47</b> · <b>4,812 tok</b> (baseline: 21,340)
+<span class="muted">   saved 77% · fewer words, same work.</span>
+</pre>
+  </div>
+</section>
+
+<!-- ============ WHY THIS MATTERS ============ -->
+<section id="why" class="section section--why">
+  <div class="section__head section__head--center">
+    <span class="eyebrow">§ 06 · Why this matters</span>
+    <h2 class="section__title">Tokens are a resource. Most stacks spend them like tap water.</h2>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-col">
+      <h4 class="why-col__h">The problem</h4>
+      <ul class="problem">
+        <li><span>01</span><b>Prompts bloat.</b> System messages grow by accretion, never by design.</li>
+        <li><span>02</span><b>Context files sprawl.</b> CLAUDE.md, style guides, repo maps — loaded every turn.</li>
+        <li><span>03</span><b>Outputs are verbose.</b> Every hop repeats the preamble.</li>
+        <li><span>04</span><b>Tool calls are chatty.</b> JSON for a one-word command.</li>
+        <li><span>05</span><b>Cost compounds.</b> Latency and bills scale with the waste, not the work.</li>
+      </ul>
+    </div>
+    <div class="why-col why-col--thesis">
+      <h4 class="why-col__h">The thesis</h4>
+      <p class="thesis">
+        If tokens were free, bloat would be free. They aren't. Treat each token
+        as a unit of intent and most systems reveal themselves as 75% noise.
+      </p>
+      <p class="thesis">
+        Caveman is a bet that the right answer isn't a bigger context window —
+        it's a smaller, sharper one. Compression isn't just a cost story. It's
+        a <i>control</i> story: precision, speed, and a model that thinks
+        inside a tighter frame tends to think better.
+      </p>
+      <p class="thesis thesis--aside">
+        <span class="joke__label">[aside]</span>
+        we said it before. why many token when few do trick.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHITECTURE ============ -->
+<section id="architecture" class="section section--arch">
+  <div class="section__head">
+    <span class="eyebrow">§ 07 · Architecture</span>
+    <h2 class="section__title">How the ecosystem composes.</h2>
+    <p class="section__lede">
+      Each project is independently useful. Caveman Code is what you get when
+      you wire them together on purpose.
+    </p>
+  </div>
+
+  <div class="arch">
+    <!-- row headers -->
+    <div class="arch__col arch__col--labels">
+      <div class="arch__lbl"></div>
+      <div class="arch__lbl">app</div>
+      <div class="arch__lbl">workflow</div>
+      <div class="arch__lbl">primitive</div>
+      <div class="arch__lbl">model</div>
+    </div>
+
+    <div class="arch__col">
+      <div class="arch__head">caveman <span>(standalone)</span></div>
+      <div class="arch__cell arch__cell--empty" data-label="app">—</div>
+      <div class="arch__cell arch__cell--empty" data-label="workflow">—</div>
+      <div class="arch__cell arch__cell--prim" data-label="primitive">caveman · compress()</div>
+      <div class="arch__cell arch__cell--model" data-label="model">any LLM</div>
+    </div>
+
+    <div class="arch__col">
+      <div class="arch__head">cavekit <span>(spec workflow)</span></div>
+      <div class="arch__cell arch__cell--empty" data-label="app">—</div>
+      <div class="arch__cell arch__cell--work" data-label="workflow">spec → plan → verify</div>
+      <div class="arch__cell arch__cell--prim" data-label="primitive">caveman</div>
+      <div class="arch__cell arch__cell--model" data-label="model">any LLM</div>
+    </div>
+
+    <div class="arch__col">
+      <div class="arch__head">cavemem <span>(memory)</span></div>
+      <div class="arch__cell arch__cell--empty" data-label="app">—</div>
+      <div class="arch__cell arch__cell--work" data-label="workflow">SQLite · FTS5 · vector · MCP</div>
+      <div class="arch__cell arch__cell--prim" data-label="primitive">caveman (store-time)</div>
+      <div class="arch__cell arch__cell--model" data-label="model">any MCP client</div>
+    </div>
+
+    <div class="arch__col arch__col--flag">
+      <div class="arch__head">caveman-code <span>(flagship)</span></div>
+      <div class="arch__cell arch__cell--app" data-label="app">agent CLI · 4× compression</div>
+      <div class="arch__cell arch__cell--work" data-label="workflow">cavekit + cavemem embedded</div>
+      <div class="arch__cell arch__cell--prim" data-label="primitive">caveman ×2 (L03, L04)</div>
+      <div class="arch__cell arch__cell--model" data-label="model">model of your choice</div>
+    </div>
+  </div>
+
+  <div class="arch__note">
+    <span class="joke__label">[note]</span>
+    You can adopt one layer at a time. Start with Caveman, graduate to Cavekit,
+    bolt on Cavemem when your agents start forgetting, and move into Caveman
+    Code when you're tired of paying the token tax.
+  </div>
+</section>
+
+<!-- ============ TRACTION ============ -->
+<section id="traction" class="section section--traction">
+  <div class="section__head">
+    <span class="eyebrow">§ 08 · Built in the open</span>
+    <h2 class="section__title">Proof, not press.</h2>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat__k">37,000</span>
+      <span class="stat__l">★ caveman</span>
+      <span class="stat__sub">the original primitive</span>
+    </div>
+    <div class="stat stat__div" aria-hidden="true"></div>
+    <div class="stat">
+      <span class="stat__k">500</span>
+      <span class="stat__l">★ cavekit</span>
+      <span class="stat__sub">early but growing</span>
+    </div>
+    <div class="stat stat__div" aria-hidden="true"></div>
+    <div class="stat">
+      <span class="stat__k">v0.1.3</span>
+      <span class="stat__l">cavemem</span>
+      <span class="stat__sub">memory layer · april 2026</span>
+    </div>
+    <div class="stat stat__div" aria-hidden="true"></div>
+    <div class="stat stat--soon">
+      <span class="stat__k">soon<i class="stat__pulse" aria-hidden="true"></i></span>
+      <span class="stat__l">caveman-code</span>
+      <span class="stat__sub">shipping · april 2026</span>
+    </div>
+    <div class="stat stat__div" aria-hidden="true"></div>
+    <div class="stat">
+      <span class="stat__k">MIT</span>
+      <span class="stat__l">license</span>
+      <span class="stat__sub">across the stack</span>
+    </div>
+  </div>
+
+  <div class="repos">
+    <a class="repo" href="https://github.com/JuliusBrussee/caveman" target="_blank" rel="noopener">
+      <div class="repo__top">
+        <span class="repo__path">JuliusBrussee / <b>caveman</b></span>
+        <span class="repo__star">★ 37,000</span>
+      </div>
+      <p>Token compression primitive. Model-agnostic. Deterministic.</p>
+      <div class="repo__meta">
+        <span>TypeScript</span><i></i>
+        <span>MIT</span><i></i>
+        <span>updated 2d ago</span>
+      </div>
+    </a>
+    <a class="repo" href="https://github.com/JuliusBrussee/cavekit" target="_blank" rel="noopener">
+      <div class="repo__top">
+        <span class="repo__path">JuliusBrussee / <b>cavekit</b></span>
+        <span class="repo__star">★ 500</span>
+      </div>
+      <p>Spec-driven development workflow, built on Caveman.</p>
+      <div class="repo__meta">
+        <span>TypeScript</span><i></i>
+        <span>MIT</span><i></i>
+        <span>updated 6h ago</span>
+      </div>
+    </a>
+    <a class="repo" href="https://github.com/JuliusBrussee/cavemem" target="_blank" rel="noopener">
+      <div class="repo__top">
+        <span class="repo__path">JuliusBrussee / <b>cavemem</b></span>
+        <span class="repo__star">★ 7</span>
+      </div>
+      <p>Cross-agent persistent memory. SQLite + FTS5 + vector, exposed via MCP.</p>
+      <div class="repo__meta">
+        <span>TypeScript</span><i></i>
+        <span>MIT</span><i></i>
+        <span>v0.1.3 · april 2026</span>
+      </div>
+    </a>
+    <a class="repo repo--flag" href="https://github.com/JuliusBrussee/caveman-code" target="_blank" rel="noopener">
+      <div class="repo__top">
+        <span class="repo__path">JuliusBrussee / <b>caveman-code</b></span>
+        <span class="soon">coming soon</span>
+      </div>
+      <p>Coding agent CLI with four layers of token compression.</p>
+      <div class="repo__meta">
+        <span>Rust + TS</span><i></i>
+        <span>MIT</span><i></i>
+        <span>ships april 2026</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="cta" class="section section--cta">
+  <div class="cta">
+    <div class="cta__left">
+      <h2 class="cta__title">Fewer words.<br>Same work.</h2>
+      <p class="cta__sub">
+        Caveman, Cavekit, and Cavemem are public today — read the source, send
+        a patch. Caveman Code, the flagship CLI, ships soon. Watch the repo to
+        be first on install day.
+      </p>
+      <div class="row">
+        <a class="btn btn--solid btn--lg" href="https://github.com/JuliusBrussee/caveman-code" target="_blank" rel="noopener">
+          <span>★ Watch Caveman Code</span>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="https://github.com/JuliusBrussee" target="_blank" rel="noopener">Browse the repos</a>
+      </div>
+    </div>
+    <div class="cta__right">
+      <div class="install install--locked">
+        <div class="install__banner">
+          <span class="soon">coming soon</span>
+          <a class="install__watch" href="https://github.com/JuliusBrussee/caveman-code" target="_blank" rel="noopener">★ watch on GitHub</a>
+        </div>
+        <div class="install__body">
+          <div class="install__redacted" aria-hidden="true">
+            <span class="install__label">install · locked until ship day</span>
+            <code class="install__line install__line--redacted"><span class="tk-p">$</span> curl -fsSL <span class="redact">████████████</span> | sh</code>
+            <span class="install__label">or</span>
+            <code class="install__line install__line--redacted"><span class="tk-p">$</span> npx <span class="redact">████████████████</span>@latest init</code>
+            <span class="install__label">verify</span>
+            <code class="install__line install__line--redacted install__line--muted"><span class="redact">████████</span> --version  <span class="muted">// sealed</span></code>
+          </div>
+          <div class="install__seal">
+            <svg class="install__seal-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+              <rect x="5" y="10" width="14" height="10" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+              <circle cx="12" cy="15" r="1.4" fill="currentColor"></circle>
+            </svg>
+            <span class="install__seal-label">classified · not yet released</span>
+          </div>
+          <p class="install__preview-note">Commands are sealed until ship day. Caveman Code is still in private development — no packages are live yet. Watch the repo to be first when it unlocks.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__brand">
+      <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+        <path d="M4 26 L16 6 L28 26 Z" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+        <circle cx="16" cy="20" r="2.2" fill="currentColor"></circle>
+      </svg>
+      <span>CAVEMAN ECOSYSTEM</span>
+    </div>
+    <div class="foot__cols">
+      <div>
+        <h5>Projects</h5>
+        <a href="https://getcaveman.dev/#caveman">Caveman</a>
+        <a href="https://getcaveman.dev/#cavekit">Cavekit</a>
+        <a href="https://getcaveman.dev/#cavemem">Cavemem</a>
+        <a href="https://getcaveman.dev/#code">Caveman Code</a>
+      </div>
+      <div>
+        <h5>Docs</h5>
+        <a href="https://getcaveman.dev/#architecture">Architecture</a>
+        <a href="https://getcaveman.dev/#why">Thesis</a>
+        <a href="https://github.com/JuliusBrussee/caveman/releases" target="_blank" rel="noopener">Changelog</a>
+      </div>
+      <div>
+        <h5>Community</h5>
+        <a href="https://github.com/JuliusBrussee" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/JuliusBrussee/caveman/discussions" target="_blank" rel="noopener">Discussions</a>
+        <a href="https://github.com/JuliusBrussee/caveman/issues" target="_blank" rel="noopener">RFCs</a>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>MIT · 2026</span>
+      <span class="muted">why many token when few do trick.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TWEAKS PANEL ============ -->
+<div class="tweaks" id="tweaks" aria-hidden="true">
+  <header>
+    <b>Tweaks</b>
+    <span class="muted">live</span>
+  </header>
+  <label>
+    <span>accent hue</span>
+    <input type="range" id="tk-hue" min="20" max="340" step="1">
+    <output id="tk-hue-v">73°</output>
+  </label>
+  <label>
+    <span>accent chroma</span>
+    <input type="range" id="tk-chroma" min="0" max="0.22" step="0.01">
+    <output id="tk-chroma-v">0.15</output>
+  </label>
+  <label class="tk-row">
+    <span>film grain</span>
+    <input type="checkbox" id="tk-grain">
+  </label>
+  <label class="tk-row">
+    <span>humor level</span>
+    <select id="tk-humor">
+      <option value="none">none</option>
+      <option value="light">light</option>
+      <option value="cave">cave</option>
+    </select>
+  </label>
+  <label class="tk-row">
+    <span>density</span>
+    <select id="tk-density">
+      <option value="comfortable">comfortable</option>
+      <option value="compact">compact</option>
+    </select>
+  </label>
+</div>
+
+<script src="./Caveman — the token-efficient stack for agent-native builders_files/tweaks.js"></script>
+
+
+</body></html>

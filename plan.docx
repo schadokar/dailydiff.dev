@@ -1,0 +1,489 @@
+
+DAILYDIFF.DEV
+Project Plan
+A daily curriculum delivery system for software engineers
+Removes the decision fatigue of interview prep
+
+May 2026
+Side Project  ·  v1.0
+
+1. Executive Summary
+What is DailyDiff?
+A daily email that tells software engineers exactly what to study today: 2–3 DSA problems + 1 curated engineering article. Not a content newsletter — a delivery mechanism for a structured curriculum that removes the daily decision cost of “what should I work on?”
+
+
+The Problem
+Software engineers typically start interview preparation only when they decide to switch jobs. They relearn everything from scratch each time. The issue is not a lack of resources — Leetcode, NeetCode, and engineering blogs are abundant. The real problem is decision fatigue at the start of each study session. When faced with 150 problems and 50 blogs, most people either pick something too easy, spend 30 minutes planning instead of doing, or skip the session entirely.
+The Insight
+Leetcode’s daily problem works because it removes choice. But it’s one random problem with no progression. DailyDiff applies the same mechanic to a structured curriculum: problems are sequenced by topic and difficulty, articles are paired thematically, and the reader just opens and does. Even completing 3 out of 7 daily plans is meaningful progress.
+Key Properties
+Not content creation: DailyDiff aggregates and sequences existing resources. It redirects to Leetcode, to the original blog. No original articles to write.
+Automated after setup: The content DB is built once. A scheduling algorithm picks daily items. Marginal cost per issue is near-zero.
+Newsletter as UX: Email is the delivery wrapper. The product is the opinionated daily plan.
+
+
+2. Competitive Landscape
+The engineering newsletter space is crowded, but DailyDiff competes on a different axis. The incumbents are content products (original writing, insights, analysis). DailyDiff is a scheduling product (sequenced curriculum delivered via email).
+
+Competitor
+What they do
+How DailyDiff differs
+Pragmatic Engineer
+Original long-form essays on engineering culture, 1M+ subscribers
+Content brand with a voice. DailyDiff has no voice — it’s a plan, not a read.
+ByteByteGo
+System design deep-dives + visual explainers, 1M+ subscribers
+Educational content. DailyDiff doesn’t teach — it assigns.
+Leetcode Daily
+One random problem per day, same for everyone
+Closest analog. But it’s random, isolated, and has no progression or article pairing.
+NeetCode / Roadmap.sh
+Curated lists and roadmaps (Blind 75, NeetCode 150)
+Shows the map but doesn’t tell you what to do on Tuesday morning. DailyDiff fills that gap.
+Tech Interview Daily
+Daily leetcode patterns + system design frameworks
+Content-heavy newsletter. DailyDiff is link-only — no original writing, just assignments.
+
+
+The positioning gap
+DailyDiff sits between Leetcode’s daily problem (too random, no progression) and NeetCode’s roadmap (too static, no daily cadence). It’s the daily plan that neither provides.
+
+
+
+3. Product Design
+What the reader receives
+Each morning at 7am IST, the subscriber gets an email with three sections:
+
+Section
+Content
+Example
+DSA
+2–3 Leetcode problems, sequenced by topic week and progressive difficulty
+→ Longest Substring Without Repeating Characters (Medium, ~20m)→ Minimum Window Substring (Hard, ~35m)
+READ
+1 curated engineering blog article, paired thematically with the DSA topic
+→ How Cloudflare Sizes Connection Pools (Cloudflare Engineering, ~12m)
+CONTEXT
+1–2 sentences on why these pair together and what pattern to notice
+Both problems are sliding-window with a hashmap. The Cloudflare piece is the same idea at infrastructure scale.
+
+
+Frequency
+Daily, Monday through Friday. The reader is not expected to complete every day. The design principle is: even doing 3 out of 7 is progress. Missed days are not penalized. No streaks, no guilt, no “you missed 4 days!” emails. The plan keeps moving.
+What DailyDiff does NOT do
+Write original content or commentary beyond the 1–2 sentence context line
+Host or reproduce problem statements (links redirect to Leetcode)
+Track per-user progress (V1 — everyone gets the same issue)
+Offer a paid tier, courses, or premium content
+
+
+4. Naming & Brand
+Name: dailydiff
+“Diff” is the engineer’s word for “what changed.” It works on two levels: the daily code diff (what’s new in your skills) and the Unix diff command (a precise, minimal delta). The name signals the audience (engineers), the cadence (daily), and the product mechanic (incremental change) in two words.
+Domain: dailydiff.dev
+The .dev TLD is Google-owned, HTTPS-enforced by default, and signals “for developers” at the domain level. It was chosen over .com (likely taken or expensive for this two-word combo) and .xyz (worse spam reputation, which matters for a daily email product where deliverability is the whole game).
+Why not “the” dailydiff?
+Shorter: two fewer syllables when spoken aloud, three fewer characters in URLs, emails, and handles
+Cleaner handles: @dailydiff reads better than @thedailydiff on Twitter/GitHub/Substack
+Avoids brand confusion: “The Diff” by Byrne Hobart is a well-known tech/finance newsletter with 50K+ subscribers. Dropping “the” creates clear separation
+The article adds nothing: “DailyDiff” is already a distinctive compound noun. It doesn’t need a definite article the way generic words (“The Hustle”, “The Verge”) do
+Handles to register
+On the day the domain is purchased: @dailydiff on Twitter/X, GitHub, Substack, Bluesky, and beehiiv. All free. Squatters grab newsletter-adjacent names.
+
+
+5. Content Pipeline
+Overview
+The content pipeline has two halves: capture (how links get into the database) and scheduling (how links get picked for each daily issue). The capture half uses Obsidian as the staging area and Postgres as the publication source. You curate naturally in your existing note-taking flow; a cron job handles the rest.
+5.1 Capture: Obsidian → Postgres Pipe
+Architecture
+Obsidian notes are markdown files in a folder on disk. The pipe is a Go script that walks the vault folder, parses YAML frontmatter from each .md file, and upserts the data into Postgres. No API, no plugin, no sync service — just a file walk.
+
+Vault structure:
+~/ObsidianVault/Articles/*.md — curated blog articles
+~/ObsidianVault/DSA-Problems/*.md — DSA problem links
+
+Frontmatter contract (articles)
+Each article note uses YAML frontmatter that maps 1:1 to the articles database table. The body of the note can contain personal reading notes — the pipe ignores it.
+
+Field
+Type
+Purpose
+url
+string
+Canonical URL of the article (used as the primary key via hash)
+title
+string
+Article title
+source
+string
+Engineering blog name (e.g., “netflix_tech”, “stripe_engineering”)
+topics
+array
+Topic tags: [“distributed_systems”, “caching”]
+depth
+enum
+One of: intro, intermediate, deep_dive
+estimated_minutes
+integer
+Approximate read time
+published_at
+date
+The article’s original publication date
+status
+enum
+draft | ready | archived — only “ready” items are piped to the DB
+notes
+string
+Your own one-liner takeaway (optional)
+
+
+The status field
+status: ready is the kill switch. The pipe skips any note without this value. This means you can clip an article into Obsidian, read it later, and only tag it ready once you’ve confirmed it’s worth including. No half-read articles accidentally show up in tomorrow’s newsletter.
+Primary key strategy
+Use a hash of the url field as the primary key. URLs are stable; filenames can change (if you rename a note, the pipe would otherwise think it’s a new article). This handles 95% of cases and requires zero discipline beyond filling in the url field.
+Idempotency
+INSERT ... ON CONFLICT (url_hash) DO UPDATE SET ... — the pipe is safe to re-run any number of times. New article = inserted. Edited frontmatter = updated. Unchanged = no-op.
+Deletion handling
+Soft delete with a 7-day grace period. If a URL disappears from all Obsidian notes for 7 consecutive runs, mark it archived in the DB. This protects against accidental file deletions while still allowing intentional removal.
+
+5.2 Content Database
+Scale constraints
+These numbers define the upper bound of the system. Anything beyond them is unrealistic for a side project:
+
+Data type
+Max records
+Rationale
+DSA problem links
+5,000
+The universe of Leetcode 75/150/Blind 75/Striver’s sheets is ~2–3K. 5K is generous headroom.
+Article links
+100,000
+50 engineering blogs × 2,000 posts each = 100K. Aggressive but bounded.
+Daily newsletter history
+2,000
+1 issue/day × 365 × 5 years = 1,825. Rounds to 2K.
+Custom newsletter records
+10,000/year
+Only relevant if per-user tracks are built (V2+).
+
+
+Total data: under 200K rows across all tables. A single Postgres instance on any machine handles this without breaking a sweat for the next decade. No sharding, no caching layer, no queue, no microservices.
+
+Schema: 5 tables
+The database has five tables. The first three are core; the last two are optional and should be deferred.
+
+Table 1: dsa_problems
+Column
+Type
+Notes
+id
+uuid / serial
+Primary key
+url
+text (unique)
+Leetcode/GFG link
+title
+text
+Problem title
+difficulty
+enum
+easy / medium / hard
+topics
+text[]
+Array: ["arrays", "sliding_window"]
+source_list
+text[]
+Array: ["leetcode_75", "neetcode_150", "blind_75"]
+pattern
+text
+e.g., "two_pointer", "dp_1d" — for sequencing
+estimated_minutes
+integer
+Rough time to solve
+added_at
+timestamp
+When you added it
+notes
+text
+Your own one-liner
+
+
+Table 2: articles
+Column
+Type
+Notes
+id
+uuid / serial
+Primary key
+url
+text (unique)
+Canonical article URL
+title
+text
+Article title
+source
+text
+Blog name ("netflix_tech", "stripe_engineering")
+topics
+text[]
+Array: ["distributed_systems", "caching"]
+depth
+enum
+intro / intermediate / deep_dive
+estimated_minutes
+integer
+Read time
+published_at
+date
+Article’s original publication date
+added_at
+timestamp
+When you added it
+notes
+text
+Your own one-liner
+
+
+Table 3: newsletter_issues
+Column
+Type
+Notes
+id
+uuid / serial
+Primary key
+issue_date
+date (unique)
+One row per day
+dsa_problem_ids
+uuid[]
+Array of 2–3 problem IDs
+article_ids
+uuid[]
+Array of 1–2 article IDs
+theme
+text
+Optional: "Sliding Window Week, Day 3"
+sent_at
+timestamp
+Null until actually sent
+subscriber_count_at_send
+integer
+Snapshot for metrics
+
+
+Table 4: subscribers (optional — skip if Loops owns subscriber state)
+Column
+Type
+Notes
+id
+uuid / serial
+Primary key
+email
+text (unique)
+Subscriber email
+subscribed_at
+timestamp
+Signup date
+status
+enum
+active / unsubscribed / bounced
+track
+text
+Default "general"; allows future tracks
+joined_issue_id
+uuid
+Their first issue — useful for catch-up feature
+
+
+Table 5: custom_newsletters (skip entirely for V1)
+Only build this table if/when per-user customization is needed. It stores subscriber-specific issue records with their own problem/article picks.
+
+
+6. System Architecture
+Overview
+The entire system is three components and two cron jobs. No microservices, no queue, no caching layer.
+
+Minimal architecture
+[Postgres] ← [Admin scripts / Obsidian pipe to add content]
+    ↓
+[Daily cron at 6am IST] → builds today’s issue → writes to newsletter_issues
+    ↓
+[Send cron at 7am IST] → reads today’s issue → POSTs to Loops API → marks sent
+
+
+What you do NOT need
+A separate users/auth system — Loops handles signup
+A tags table with many-to-many joins — Postgres array columns + GIN indexes are fine at this scale
+A queue (SQS/Redis/etc) — a single cron job is enough; if sending fails, retry tomorrow
+Caching — reads are 1–2 queries per day from a cron; there is nothing to cache
+Search infrastructure (Elasticsearch, Meilisearch) — with 100K rows, Postgres ILIKE queries are fine
+Analytics DB — Loops provides opens/clicks; that’s enough
+Hosting plan
+Component
+Where
+Cost
+Postgres
+Local MacBook M3 Pro (V1), then $5/mo VPS when ready to ship
+$0 → $5/mo
+Cron jobs
+launchd on Mac (V1), then same VPS
+$0
+Email sending
+Loops (existing account from Munshiji)
+Free tier
+Domain + DNS
+Cloudflare
+~$12/yr for .dev
+Total
+
+
+$0 to ~$5/mo
+
+
+
+7. Scheduling Algorithm
+The scheduler is the actual product. Everything else (the DB, the email, the landing page) is plumbing. This is where the quality of the daily plan is determined.
+Daily scheduler steps (6am cron)
+Look at the last 7–14 issues to determine which topics were covered recently
+Determine today’s topic based on the curriculum’s progression model (e.g., 4 weeks of arrays/strings, 2 weeks of trees, etc.)
+Pick 2–3 DSA problems matching that topic, with at least one being a difficulty step up from yesterday
+Pick 1 article that pairs thematically (e.g., a system design article on “rate limiting” goes well with DSA week on “sliding window”)
+Write the issue row to newsletter_issues
+
+Scheduling constraints
+Topic progression: follow a predefined curriculum order, not random sampling
+Spacing: don’t put 3 hard DP problems back-to-back
+Topic cycling: don’t serve 5 days of trees in a row
+Difficulty ramp: at least one problem should be harder than the previous day’s median
+Article–DSA pairing: surface articles that share conceptual DNA with the day’s problems
+
+Start dumb, add sophistication later
+Begin with random selection within constraints and add intelligence only when you notice patterns that annoy you as a user yourself. The scheduler will improve over time as you use your own product.
+
+
+
+8. System Flow (End-to-End)
+The full pipeline from reading an article to a subscriber receiving it. Refer to the Excalidraw diagram for the visual version.
+
+
+Phase 1: Capture (your daily habit)
+You read an article in your browser
+Obsidian Web Clipper extension creates a .md note in your vault
+Note lands in ~/Vault/Articles/ with auto-filled URL and title
+You add frontmatter: topics, depth, and status: ready to mark it shippable
+
+Phase 2: Pipe (automated, 3am cron)
+launchd triggers your Go script on the MacBook
+Walker lists all .md files in Articles/ and DSA-Problems/
+Frontmatter parser reads each file, skips if status ≠ ready
+UPSERT by url-hash into Postgres (idempotent, safe to re-run)
+
+Phase 3: Schedule & Send (automated, 6–7am cron)
+Scheduler queries the DB for candidate items based on curriculum rules
+Applies constraints (topic progression, difficulty ramp, spacing)
+Writes the picked items as a row in newsletter_issues
+Renders to HTML and POSTs to Loops API as a campaign
+Subscriber receives it in inbox at 7am IST
+
+Key property
+Steps 1–4 are your daily habit (reading + tagging in Obsidian, which you’d do anyway). Steps 5–14 are fully automated. You never log into a database, never write a newsletter from scratch.
+
+
+
+9. Monetization
+Year 1 goal is audience, not revenue. Don’t bother with paid tiers for the first year.
+Revenue timeline
+Milestone
+Revenue stream
+Realistic range
+0–2K subscribers
+None — focus on consistency and retention
+$0
+2K+ subscribers
+Affiliate links (Leetcode Premium, AlgoExpert, Educative, relevant books)
+$200–$800/mo
+5K+ subscribers
+Newsletter sponsorships (1 per issue, non-intrusive)
+$500–$2,000/mo
+10K+ subscribers
+Consider this more than a side project
+Re-evaluate
+
+
+What NOT to monetize
+Don’t gate the daily email behind a paywall — the product’s value is the daily delivery; paywalling it defeats the purpose
+Don’t sell subscriber data
+Don’t add a second email per day for sponsors
+
+
+10. Marketing
+Launch channels
+Twitter/X: threads on DSA prep, engineering blog discoveries, the “why I built this” story
+LinkedIn: same content, formatted for the feed (carousels, short posts)
+Reddit: r/cscareerquestions, r/leetcode, r/experienceddevs — genuine participation first, then share
+Indian engineering communities: you’re in Bengaluru — the Indian SWE prep market is enormous and underserved by English-language newsletters
+Lead magnet ideas
+A PDF cheat sheet: “The 20 Leetcode patterns you need, mapped to real system design concepts”
+A Notion/Obsidian template for the frontmatter schema (meta: helps people build their own version, builds goodwill)
+Retention over acquisition
+The actual marketing problem isn’t getting subscribers — it’s keeping them. Two design choices that help:
+Don’t shame missed days. No “you missed 4 days!” emails. Those make people unsubscribe rather than re-engage.
+Make catching up trivially optional. “Yesterday’s problem” link in today’s email, not a guilt trip.
+
+
+11. Build Plan
+Phase 1: Foundation (Week 1–2)
+Set up Postgres locally (brew install postgresql)
+Define the three core tables (dsa_problems, articles, newsletter_issues)
+Manually add 50 DSA problems and 20 articles to validate the schema feels right
+Set up pg_dump backup cron: weekly to ~/backups/
+Phase 2: Pipe (Week 3)
+Write the Go frontmatter parser as a one-shot script (stdout first, no DB)
+Add 5–10 real article notes in Obsidian with the full frontmatter schema
+Use the schema for a few days — see if any fields are annoying to fill out, adjust
+Connect to Postgres, implement the upsert logic
+Wrap in a launchd job to run nightly
+Phase 3: Scheduler (Week 4)
+Write the scheduler script in Go
+Start with simple random selection within topic/difficulty constraints
+Have it generate 7 days of issues into the DB
+Review the output manually — does the sequence feel right?
+Phase 4: Ship (Week 5)
+Wire up Loops integration (POST campaign API)
+Register domain (dailydiff.dev) + handles (@dailydiff everywhere)
+Build landing page (email signup → Loops)
+Send the first issue to yourself only, then to 10 friends for feedback
+Phase 5: Launch (Week 6)
+Open the waitlist
+Announce on Twitter, LinkedIn, and one relevant subreddit
+Ship the first public issue
+
+3-month checkpoint
+If you haven’t hit 200 subscribers AND you’re not enjoying it, kill it without guilt. Side projects that drag on past their expiration date are worse than ones that get shut down cleanly.
+
+
+
+12. Risks & Mitigations
+Risk
+Severity
+Mitigation
+Curriculum quality is poor (problems feel random, topics repeat)
+High
+Spend more time on the scheduling algorithm than you think. This is the product.
+Email deliverability degrades (daily emails get flagged as spam)
+Medium
+Monitor open rates weekly. If they drop below 25%, investigate. Use Loops’ warm-up features.
+You burn out on content curation
+Medium
+Obsidian pipe means curation happens naturally as you read. Not a separate chore.
+Leetcode changes URLs or structure
+Low
+URL-hash as primary key means the DB is resilient. Broken links can be caught with a monthly health-check script.
+Mac must be on at 3am for the pipe
+Low
+Use launchd’s “run on next wake” option. Or sync vault to a VPS later.
+
+
+
+
+End of plan. The Excalidraw system flow diagram is attached as a separate file.
