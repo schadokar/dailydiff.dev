@@ -6,6 +6,7 @@ import HowItWorks from './sections/HowItWorks.jsx';
 import Features from './sections/Features.jsx';
 import NonFeatures from './sections/NonFeatures.jsx';
 import Positioning from './sections/Positioning.jsx';
+import Signup from './sections/Signup.jsx';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Features />
         <NonFeatures />
         <Positioning />
+        <Signup />
       </main>
     </>
   );
