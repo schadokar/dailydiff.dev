@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import Button from '../components/Button.jsx';
+import ThemeToggle from '../components/ThemeToggle.jsx';
 
 const links = [
+  { label: 'Problem',      href: '#problem' },
+  { label: 'Insight',      href: '#insight' },
   { label: 'How it works', href: '#how-it-works' },
   { label: 'What you get', href: '#features' },
-  { label: 'Sign up',      href: '#signup' },
 ];
 
 export default function Nav() {
@@ -23,10 +25,7 @@ export default function Nav() {
     <header className={`nav${open ? ' nav--open' : ''}`}>
       <div className="nav__inner">
         <a className="brand" href="#top" aria-label="DailyDiff home">
-          <svg className="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M4 26 L16 6 L28 26 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            <circle cx="16" cy="20" r="2.2" fill="currentColor" />
-          </svg>
+          <span className="brand__mark" aria-hidden="true">//</span>
           <span className="brand__word">DAILYDIFF</span>
           <span className="brand__dot">·</span>
           <span className="brand__sub">STUDY OS</span>
@@ -37,7 +36,8 @@ export default function Nav() {
         </nav>
 
         <div className="nav__cta">
-          <Button variant="solid" href="#signup">Get the daily plan →</Button>
+          <ThemeToggle />
+          <Button variant="solid" href="#signup">Get tomorrow's email →</Button>
         </div>
 
         <button
@@ -56,7 +56,7 @@ export default function Nav() {
 
       <div className="nav__drawer" id="mobile-nav" aria-hidden={!open}>
         {links.map(l => <a key={l.href} href={l.href} onClick={close}>{l.label}</a>)}
-        <Button variant="solid" href="#signup">Get the daily plan →</Button>
+        <Button variant="solid" href="#signup">Get tomorrow's email →</Button>
       </div>
     </header>
   );

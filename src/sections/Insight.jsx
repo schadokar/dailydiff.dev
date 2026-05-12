@@ -18,6 +18,22 @@ export default function Insight() {
         thematically. You open the email, do the work, close it.
         Even 3 of 7 days completed is meaningful progress.
       </p>
+
+      <div className="retro-progress" aria-label="3 of 7 days completed">
+        <div className="retro-progress__label">
+          <span className="retro-progress__week">WEEK_01</span>
+          <span className="retro-progress__count">3 / 7 days</span>
+        </div>
+        <div className="retro-progress__track">
+          {[...Array(7)].map((_, i) => (
+            <span key={i} className={`retro-progress__block${i < 3 ? ' retro-progress__block--on' : ''}`} />
+          ))}
+        </div>
+        <div className="retro-progress__footer">
+          <span className="retro-progress__pct">43%</span>
+          <span className="retro-progress__msg">still ahead of zero.</span>
+        </div>
+      </div>
     </section>
   );
 }
