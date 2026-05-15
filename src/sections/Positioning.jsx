@@ -12,7 +12,6 @@ export default function Positioning() {
         and NeetCode-style roadmaps (static, no daily cadence). It is the daily
         plan that neither provides.
       </p>
-      <br />
       <p className="section__lede">
         It does not compete with Pragmatic Engineer or ByteByteGo — those are
         content products. DailyDiff is a scheduling product. The value is the

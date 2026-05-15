@@ -11,7 +11,6 @@ export default function Insight() {
         Leetcode's daily problem works because it removes the question of what
         to do. But it's one random problem with no progression and no context.
       </p>
-      <br />
       <p className="section__lede">
         DailyDiff applies the same mechanic to a structured, sequenced
         curriculum. Problems are ordered by topic and difficulty. Articles pair

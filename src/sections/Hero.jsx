@@ -4,7 +4,7 @@ import SampleIssueCard from '../components/SampleIssueCard.jsx';
 
 export default function Hero() {
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
+    <section className="hero" aria-labelledby="hero-title">
       <div className="hero__meta">
         <Tag variant="soon">pre-launch</Tag>
         <Tag variant="muted">Daily · 7am IST</Tag>
