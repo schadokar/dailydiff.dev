@@ -11,15 +11,10 @@ import Footer from './sections/Footer.jsx';
 import SampleIssueCard from './components/SampleIssueCard.jsx';
 import CareerCycle from './components/CareerCycle.jsx';
 
-/* Which email-preview block lights up while a section owns the viewport. */
-const SPOTLIGHT = {
-  insight: 'context',
-  'how-it-works': 'header',
-  features: 'body',
-};
-
-/* Which component the right rail shows while a section owns the viewport. */
+/* Which component the right rail shows while a section owns the viewport.
+   '' is the initial state (hero in view); unmapped sections show an empty rail. */
 const RAIL = {
+  '': 'email',
   problem: 'cycle',
 };
 
@@ -43,7 +38,7 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const spotlight = SPOTLIGHT[activeId] || '';
+  const railKind = RAIL[activeId];
 
   return (
     <>
@@ -55,13 +50,14 @@ export default function App() {
 
           <aside className="layout__rail">
             <div className="rail__sticky">
-              {RAIL[activeId] === 'cycle' ? (
+              {railKind === 'email' && (
+                <div className="rail__fade" key="email">
+                  <SampleIssueCard />
+                </div>
+              )}
+              {railKind === 'cycle' && (
                 <div className="rail__fade" key="cycle">
                   <CareerCycle />
-                </div>
-              ) : (
-                <div className="rail__fade" key="email">
-                  <SampleIssueCard spotlight={spotlight} />
                 </div>
               )}
             </div>

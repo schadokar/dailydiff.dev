@@ -1,6 +1,10 @@
 export default function SampleIssueCard() {
   return (
-    <div className="email-preview" role="img" aria-label="Sample DailyDiff email in inbox">
+    <div
+      className="email-preview"
+      role="img"
+      aria-label="Sample DailyDiff email in inbox"
+    >
       <div className="email-preview__chrome">
         <span className="email-preview__dot" data-c="r" />
         <span className="email-preview__dot" data-c="y" />

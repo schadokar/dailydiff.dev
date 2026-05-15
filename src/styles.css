@@ -574,37 +574,6 @@ button { font: inherit; cursor: pointer; }
 }
 .email-block--context .email-block__body { color: var(--fg-mute); }
 
-/* ---- email preview: scroll-driven spotlight ---- */
-.email-preview__header,
-.email-preview__body,
-.email-block {
-  transition: opacity .5s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow .5s cubic-bezier(0.22, 1, 0.36, 1),
-              transform .5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* how-it-works → the email arrives: spotlight the header */
-.email-preview[data-spotlight="header"] .email-preview__body { opacity: 0.32; }
-.email-preview[data-spotlight="header"] .email-preview__header {
-  background: var(--acc-bg);
-  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--acc) 50%, transparent);
-}
-
-/* insight → the curation/why: spotlight the context block */
-.email-preview[data-spotlight="context"] .email-preview__header { opacity: 0.45; }
-.email-preview[data-spotlight="context"] .email-block:not(.email-block--context) { opacity: 0.3; }
-.email-preview[data-spotlight="context"] .email-block--context {
-  box-shadow: 0 0 0 1.5px color-mix(in oklab, var(--acc) 50%, transparent),
-              0 12px 32px -18px rgba(0,0,0,0.8);
-  transform: scale(1.015);
-}
-
-/* features → what's inside: spotlight all body blocks */
-.email-preview[data-spotlight="body"] .email-preview__header { opacity: 0.45; }
-.email-preview[data-spotlight="body"] .email-block {
-  box-shadow: 0 0 0 1px color-mix(in oklab, var(--acc) 38%, transparent);
-}
-
 /* ---- footer ---- */
 .footer {
   max-width: var(--maxw); margin: 0 auto;
