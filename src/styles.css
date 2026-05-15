@@ -1,7 +1,12 @@
 /* =====================================================================
    DAILYDIFF LANDING — global styles
-   dark editorial developer aesthetic · olive/lime accent
-   Derived from cavem design language (getcaveman.dev)
+   handwritten study-notebook aesthetic · olive/lime accent
+
+   Type system — "an engineer's handwritten study planner":
+     --font-display  Caveat 700        marker headlines
+     --font-sans     Kalam 400         legible body handwriting
+     --font-mono     Architects Daughter  drafting/annotation labels
+     --font-hand     Caveat 600/700    scrawled accents
    ===================================================================== */
 
 :root {
@@ -43,9 +48,11 @@
   --radius-pill: 999px;
 
   /* Type */
-  --font-sans:       'Inter', system-ui, sans-serif;
-  --font-mono:       'JetBrains Mono', ui-monospace, monospace;
-  --font-serif-ital: 'Newsreader', Georgia, serif;
+  --font-sans:       'Kalam', 'Comic Sans MS', cursive;
+  --font-mono:       'Architects Daughter', 'Kalam', cursive;
+  --font-serif-ital: 'Caveat', cursive;
+  --font-hand:       'Caveat', cursive;
+  --font-display:    'Caveat', 'Kalam', cursive;
 
   /* Layout */
   --pad:  clamp(20px, 4vw, 72px);
@@ -89,7 +96,7 @@ html {
   color: var(--fg);
   font-family: var(--font-sans);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
@@ -140,18 +147,18 @@ button { font: inherit; cursor: pointer; }
 .brand {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: 0.06em;
+  font-size: 14px; letter-spacing: 0.04em;
   color: var(--fg);
 }
 .brand__mark {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
   color: var(--acc);
 }
-.brand__word { font-weight: 600; }
+.brand__word { font-weight: 400; }
 .brand__dot  { color: var(--fg-dim); }
 .brand__sub  { color: var(--fg-mute); }
 
@@ -159,7 +166,7 @@ button { font: inherit; cursor: pointer; }
   display: flex; gap: 26px;
   justify-self: center;
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 15px;
   color: var(--fg-mute);
 }
 .nav__links a { transition: color .15s ease; }
@@ -226,7 +233,7 @@ button { font: inherit; cursor: pointer; }
   }
   .nav__drawer a {
     display: block; padding: 12px 0;
-    font-family: var(--font-mono); font-size: 14px;
+    font-family: var(--font-mono); font-size: 17px;
     color: var(--fg-1);
     border-bottom: 1px solid color-mix(in oklab, var(--line) 50%, transparent);
   }
@@ -240,7 +247,7 @@ button { font: inherit; cursor: pointer; }
   display: inline-flex; align-items: center; gap: 8px;
   padding: var(--btn-py) var(--btn-px);
   border: 1px solid var(--line-2); border-radius: var(--radius);
-  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.01em;
+  font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.01em;
   color: var(--fg);
   background: var(--panel);
   white-space: nowrap;
@@ -253,21 +260,21 @@ button { font: inherit; cursor: pointer; }
 
 .btn--solid {
   background: var(--fg); color: var(--bg);
-  border-color: var(--fg); font-weight: 600;
+  border-color: var(--fg); font-weight: 400;
 }
 .btn--solid:hover { background: var(--acc); border-color: var(--acc); color: var(--bg); }
 
 .btn--ghost { background: transparent; }
 .btn--ghost:hover { background: var(--panel); }
 
-.btn--lg { --btn-py: 14px; --btn-px: 18px; font-size: 13.5px; }
+.btn--lg { --btn-py: 14px; --btn-px: 18px; font-size: 16.5px; }
 
 /* ---- tags ---- */
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 5px 9px;
+  font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 4px 9px;
   border: 1px solid var(--line-2); border-radius: var(--radius-pill);
   color: var(--fg-1);
   background: color-mix(in oklab, var(--panel) 50%, transparent);
@@ -285,32 +292,32 @@ button { font: inherit; cursor: pointer; }
   margin-bottom: 32px;
 }
 .hero__title {
-  font-family: var(--font-sans);
-  font-size: clamp(36px, 6vw, 84px);
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: clamp(46px, 8vw, 112px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: 0;
   margin: 0 0 28px;
   max-width: 20ch;
   text-wrap: balance;
 }
 .ital {
-  font-family: var(--font-serif-ital);
-  font-style: italic;
-  font-weight: 400;
+  font-family: var(--font-hand);
+  font-style: normal;
+  font-weight: 700;
   color: var(--acc);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 .hero__thesis {
   font-family: var(--font-mono);
-  font-size: 13.5px; color: var(--fg-mute);
+  font-size: 15px; color: var(--fg-mute);
   margin: 0 0 20px;
 }
 .hero__thesis .thesis__label { color: var(--acc-dim); margin-right: 10px; }
 .hero__sub {
   max-width: 58ch;
-  font-size: clamp(16px, 1.5vw, 19px);
-  color: var(--fg-1); line-height: 1.55;
+  font-size: clamp(17px, 1.6vw, 21px);
+  color: var(--fg-1); line-height: 1.6;
   margin: 0 0 36px; text-wrap: pretty;
 }
 .hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: clamp(56px, 7vw, 90px); }
@@ -327,23 +334,23 @@ button { font: inherit; cursor: pointer; }
 
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.07em;
   text-transform: uppercase; color: var(--acc);
   padding-bottom: 4px; margin-bottom: 16px;
   border-bottom: 1px solid var(--acc-dim);
 }
 
 .section__title {
-  font-family: var(--font-sans);
-  font-size: clamp(28px, 3.6vw, 48px);
-  font-weight: 500; line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.6vw, 60px);
+  font-weight: 700; line-height: 1.06;
+  letter-spacing: 0;
   margin: 0 0 18px; text-wrap: balance;
 }
 .section__lede {
-  font-size: clamp(15px, 1.3vw, 17px);
+  font-size: clamp(16px, 1.4vw, 18.5px);
   color: var(--fg-1); max-width: 62ch;
-  line-height: 1.6; text-wrap: pretty; margin: 0;
+  line-height: 1.65; text-wrap: pretty; margin: 0;
 }
 .section__lede + .section__lede { margin-top: 18px; }
 
@@ -354,13 +361,13 @@ button { font: inherit; cursor: pointer; }
 }
 .bullets li {
   display: flex; gap: 10px; align-items: baseline;
-  font-size: clamp(14.5px, 1.2vw, 16px); color: var(--fg-1);
-  line-height: 1.5;
+  font-size: clamp(15.5px, 1.3vw, 17px); color: var(--fg-1);
+  line-height: 1.55;
 }
 .bullets li::before {
   content: "→";
   color: var(--acc); font-family: var(--font-mono);
-  font-size: 13px; flex-shrink: 0;
+  font-size: 14px; flex-shrink: 0;
 }
 
 /* ---- numbered steps (How it works) ---- */
@@ -373,16 +380,16 @@ button { font: inherit; cursor: pointer; }
   gap: 0 16px; align-items: start;
 }
 .step__num {
-  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.05em;
   color: var(--acc); padding-top: 3px;
 }
 .step__title {
-  font-weight: 500; font-size: clamp(15px, 1.3vw, 17px);
+  font-weight: 700; font-size: clamp(16px, 1.3vw, 18px);
   margin: 0 0 4px;
 }
 .step__body {
-  font-size: clamp(14px, 1.2vw, 15.5px); color: var(--fg-mute);
-  line-height: 1.5; margin: 0;
+  font-size: clamp(15px, 1.2vw, 16.5px); color: var(--fg-mute);
+  line-height: 1.55; margin: 0;
 }
 
 /* ---- signup block ---- */
@@ -399,12 +406,13 @@ button { font: inherit; cursor: pointer; }
   max-width: 600px;
 }
 .signup__title {
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 500; letter-spacing: -0.025em;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-weight: 700; letter-spacing: 0;
   margin: 0 0 8px;
 }
 .signup__sub {
-  font-family: var(--font-mono); font-size: 13px; color: var(--fg-mute);
+  font-family: var(--font-mono); font-size: 15px; color: var(--fg-mute);
   margin: 0 0 28px;
 }
 .signup__form {
@@ -414,7 +422,7 @@ button { font: inherit; cursor: pointer; }
   flex: 1; min-width: 220px;
   padding: 12px 14px;
   background: var(--bg); border: 1px solid var(--line-2); border-radius: var(--radius);
-  color: var(--fg); font-family: var(--font-sans); font-size: 14.5px;
+  color: var(--fg); font-family: var(--font-sans); font-size: 16px;
   transition: border-color .15s ease;
 }
 .signup__input::placeholder { color: var(--fg-dim); }
@@ -423,15 +431,15 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--acc);
 }
 .signup__microcopy {
-  font-size: 12px; font-family: var(--font-mono); color: var(--fg-dim);
+  font-size: 13px; font-family: var(--font-mono); color: var(--fg-dim);
   margin: 12px 0 0;
 }
 .signup__success {
-  font-family: var(--font-mono); font-size: 14px; color: var(--acc);
+  font-family: var(--font-mono); font-size: 15px; color: var(--acc);
   padding: 14px 0;
 }
 .signup__error {
-  font-family: var(--font-mono); font-size: 13px; color: var(--err);
+  font-family: var(--font-mono); font-size: 14px; color: var(--err);
   margin: 8px 0 0;
 }
 
@@ -460,8 +468,8 @@ button { font: inherit; cursor: pointer; }
 .email-preview__dot[data-c="g"] { background: var(--dot-g); }
 .email-preview__addr {
   margin-left: 8px;
-  font-family: var(--font-mono); font-size: 10px;
-  color: var(--fg-dim); letter-spacing: 0.04em;
+  font-family: var(--font-mono); font-size: 11.5px;
+  color: var(--fg-dim); letter-spacing: 0.02em;
 }
 .email-preview__header {
   padding: 14px 16px 12px;
@@ -472,17 +480,17 @@ button { font: inherit; cursor: pointer; }
   margin-bottom: 6px;
 }
 .email-preview__from {
-  font-size: 13px; font-weight: 600; color: var(--fg);
+  font-size: 15px; font-weight: 700; color: var(--fg);
 }
 .email-preview__date {
-  font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-dim);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-dim);
 }
 .email-preview__subject {
-  font-size: 14.5px; color: var(--fg);
+  font-size: 16px; color: var(--fg);
   line-height: 1.35; margin-bottom: 4px;
 }
 .email-preview__meta {
-  font-family: var(--font-mono); font-size: 10.5px; color: var(--fg-mute);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-mute);
 }
 .email-preview__body {
   padding: 14px 16px 16px;
@@ -499,41 +507,41 @@ button { font: inherit; cursor: pointer; }
   background: color-mix(in oklab, var(--panel-2) 65%, transparent);
 }
 .email-block__kicker {
-  font-family: var(--font-mono); font-size: 9px;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--acc); margin-bottom: 6px;
 }
 .email-block--context .email-block__kicker { color: var(--fg-mute); }
 .email-block__list {
   margin: 0; padding: 0; list-style: none;
   display: flex; flex-direction: column; gap: 4px;
-  font-size: 13px; color: var(--fg-1); line-height: 1.5;
+  font-size: 14px; color: var(--fg-1); line-height: 1.5;
 }
 .email-block__list li {
   display: flex; align-items: baseline; gap: 8px;
 }
 .email-block__tag {
-  font-family: var(--font-mono); font-size: 10px;
+  font-family: var(--font-mono); font-size: 11px;
   color: var(--acc); background: var(--acc-bg);
   padding: 1px 6px; border-radius: var(--radius-sm);
   flex-shrink: 0;
 }
 .email-block__body {
-  font-size: 13px; color: var(--fg-1); line-height: 1.55;
+  font-size: 14px; color: var(--fg-1); line-height: 1.55;
 }
 .email-block__body em {
-  font-family: var(--font-serif-ital); font-style: italic;
+  font-family: var(--font-hand); font-style: normal; font-weight: 700;
   color: var(--fg);
 }
 .email-block__article {
   display: flex; flex-direction: column; gap: 1px;
 }
 .email-block__title {
-  font-size: 13px; color: var(--fg-1); line-height: 1.4;
+  font-size: 14px; color: var(--fg-1); line-height: 1.4;
 }
 .email-block__from {
-  font-family: var(--font-mono); font-size: 10.5px;
-  color: var(--fg-mute); letter-spacing: 0.02em;
+  font-family: var(--font-mono); font-size: 11.5px;
+  color: var(--fg-mute); letter-spacing: 0.01em;
 }
 .email-block--context .email-block__body { color: var(--fg-mute); }
 
@@ -546,7 +554,7 @@ button { font: inherit; cursor: pointer; }
   flex-wrap: wrap; gap: 12px;
 }
 .footer__copy {
-  font-family: var(--font-mono); font-size: 12px; color: var(--fg-dim);
+  font-family: var(--font-mono); font-size: 13px; color: var(--fg-dim);
 }
 .footer__socials { display: flex; gap: 16px; align-items: center; }
 .footer__social {
@@ -573,11 +581,11 @@ button { font: inherit; cursor: pointer; }
   margin-bottom: 10px;
 }
 .retro-progress__week {
-  font-size: 10px; letter-spacing: 0.15em;
+  font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--acc);
 }
 .retro-progress__count {
-  font-size: 11px; color: var(--fg-mute);
+  font-size: 12px; color: var(--fg-mute);
 }
 .retro-progress__track {
   display: flex; gap: 6px;
@@ -597,9 +605,10 @@ button { font: inherit; cursor: pointer; }
   margin-top: 8px;
 }
 .retro-progress__pct {
-  font-size: 11px; color: var(--acc); font-weight: 600;
+  font-size: 12px; color: var(--acc); font-weight: 700;
 }
 .retro-progress__msg {
-  font-size: 10px; color: var(--fg-dim); letter-spacing: 0.04em;
+  font-family: var(--font-hand);
+  font-size: 16px; color: var(--fg-mute); letter-spacing: 0;
 }
 .footer__social:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
