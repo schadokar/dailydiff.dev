@@ -1,6 +1,5 @@
 import Tag from '../components/Tag.jsx';
 import Button from '../components/Button.jsx';
-import SampleIssueCard from '../components/SampleIssueCard.jsx';
 
 export default function Hero() {
   return (
@@ -29,10 +28,6 @@ export default function Hero() {
       <div className="hero__ctas">
         <Button variant="solid" size="lg" href="#signup">Get tomorrow's email →</Button>
         <Button variant="ghost" size="lg" href="#how-it-works">See how it works</Button>
-      </div>
-
-      <div className="hero__visual">
-        <SampleIssueCard />
       </div>
     </section>
   );

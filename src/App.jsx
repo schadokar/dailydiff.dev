@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Nav from './sections/Nav.jsx';
 import Hero from './sections/Hero.jsx';
 import Problem from './sections/Problem.jsx';
@@ -10,36 +9,13 @@ import Signup from './sections/Signup.jsx';
 import Footer from './sections/Footer.jsx';
 import SampleIssueCard from './components/SampleIssueCard.jsx';
 import CareerCycle from './components/CareerCycle.jsx';
-
-/* Which component the right rail shows while a section owns the viewport.
-   '' is the initial state (hero in view); unmapped sections show an empty rail. */
-const RAIL = {
-  '': 'email',
-  problem: 'cycle',
-};
+import TodayPlan from './components/TodayPlan.jsx';
+import StreakHeatmap from './components/StreakHeatmap.jsx';
+import FrogCard from './components/FrogCard.jsx';
+import CalmInbox from './components/CalmInbox.jsx';
+import CuratorFunnel from './components/CuratorFunnel.jsx';
 
 export default function App() {
-  const [activeId, setActiveId] = useState('');
-
-  useEffect(() => {
-    const sections = document.querySelectorAll('.layout__flow section');
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        });
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const railKind = RAIL[activeId];
-
   return (
     <>
       <div className="grain" aria-hidden="true" />
@@ -47,29 +23,36 @@ export default function App() {
       <main id="top">
         <div className="layout">
           <Hero />
-
-          <aside className="layout__rail">
-            <div className="rail__sticky">
-              {railKind === 'email' && (
-                <div className="rail__fade" key="email">
-                  <SampleIssueCard />
-                </div>
-              )}
-              {railKind === 'cycle' && (
-                <div className="rail__fade" key="cycle">
-                  <CareerCycle />
-                </div>
-              )}
-            </div>
+          <aside className="layout__rail layout__rail--hero">
+            <SampleIssueCard />
           </aside>
 
-          <div className="layout__flow">
-            <Problem />
-            <Insight />
-            <HowItWorks />
-            <Features />
-            <NonFeatures />
-          </div>
+          <Problem />
+          <aside className="layout__rail layout__rail--problem">
+            <CareerCycle />
+          </aside>
+
+          <Insight />
+          <aside className="layout__rail layout__rail--insight">
+            <TodayPlan />
+            <div className="insight-rail__gap" />
+            <StreakHeatmap />
+          </aside>
+
+          <HowItWorks />
+          <aside className="layout__rail layout__rail--how">
+            <FrogCard />
+          </aside>
+
+          <Features />
+          <aside className="layout__rail layout__rail--features">
+            <CuratorFunnel />
+          </aside>
+
+          <NonFeatures />
+          <aside className="layout__rail layout__rail--nonfeatures">
+            <CalmInbox />
+          </aside>
         </div>
 
         <Signup />
