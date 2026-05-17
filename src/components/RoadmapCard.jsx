@@ -1,5 +1,5 @@
 const ROADMAP = [
-  { title: 'Browse past issues', sub: 'the full archive, readable on the web' },
+  { title: 'Notion progress tracker', sub: 'a ready-made template with a todo list to follow along' },
   { title: 'Read in your browser', sub: 'a shareable link for every issue' },
   // { title: 'Topic deep-dives', sub: "occasional long-form on the day's concept" },
   { title: 'RSS feed', sub: 'subscribe without an email' },
