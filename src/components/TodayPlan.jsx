@@ -8,6 +8,9 @@ const ARTICLES = [
   { title: 'Designing data-intensive retries', from: 'Stripe Engineering' },
 ];
 
+// The foundational concept the day's READ articles are anchored to.
+const CONCEPT = 'fault tolerance';
+
 export default function TodayPlan() {
   return (
     <div
@@ -33,7 +36,9 @@ export default function TodayPlan() {
         </div>
 
         <div className="today-plan__group">
-          <div className="today-plan__group-label">read</div>
+          <div className="today-plan__group-label">
+            read <span className="today-plan__concept">· {CONCEPT}</span>
+          </div>
           <ul className="today-plan__list">
             {ARTICLES.map((a) => (
               <li key={a.title} className="today-plan__item">

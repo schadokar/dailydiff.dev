@@ -429,6 +429,19 @@ button { font: inherit; cursor: pointer; }
   font-size: 14px; flex-shrink: 0;
 }
 
+/* ---- read-topic chips (What you get) ---- */
+.topics { margin-top: 28px; }
+.topics__label {
+  display: block;
+  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--fg-mute);
+  margin-bottom: 12px;
+}
+.topics__list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+
 /* ---- numbered steps (How it works) ---- */
 .steps {
   display: flex; flex-direction: column; gap: 24px;
@@ -715,6 +728,11 @@ button { font: inherit; cursor: pointer; }
   content: '';
   flex: 1; height: 1px;
   background: color-mix(in oklab, var(--line) 80%, transparent);
+}
+.today-plan__concept {
+  font-family: var(--font-hand);
+  font-size: 15px; letter-spacing: 0; text-transform: none;
+  color: var(--acc);
 }
 .today-plan__list {
   margin: 0; padding: 0; list-style: none;
@@ -1106,7 +1124,7 @@ button { font: inherit; cursor: pointer; }
 .curator__tile--dsa {
   font-family: var(--font-mono);
   font-size: 11px; letter-spacing: .02em;
-  color: var(--fg-mute);
+  color: #FFA116; /* LeetCode brand orange */
 }
 .curator__tile--logo { color: var(--fg-1); }
 .curator__tile--logo svg { width: 19px; height: 19px; display: block; }
@@ -1158,6 +1176,11 @@ button { font: inherit; cursor: pointer; }
 .curator__group-label::after {
   content: ''; flex: 1; height: 1px;
   background: color-mix(in oklab, var(--line) 80%, transparent);
+}
+.curator__concept {
+  font-family: var(--font-hand);
+  font-size: 15px; letter-spacing: 0; text-transform: none;
+  color: var(--acc);
 }
 .curator__list {
   margin: 0; padding: 0; list-style: none;

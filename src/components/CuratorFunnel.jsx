@@ -52,6 +52,9 @@ const READ = [
   { name: 'stripe', from: 'Stripe Engineering' },
 ];
 
+// The foundational concept the day's READ articles are anchored to.
+const CONCEPT = 'fault tolerance';
+
 export default function CuratorFunnel() {
   return (
     <div
@@ -103,7 +106,9 @@ export default function CuratorFunnel() {
         </div>
 
         <div className="curator__group">
-          <div className="curator__group-label">read</div>
+          <div className="curator__group-label">
+            read <span className="curator__concept">· {CONCEPT}</span>
+          </div>
           <ul className="curator__list">
             {READ.map((a) => (
               <li key={a.name} className="curator__item">
