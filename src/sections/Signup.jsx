@@ -26,7 +26,7 @@ export default function Signup() {
       <div className="signup__grid">
         <div className="signup__block">
           <h2 className="signup__title" id="signup-title">Get tomorrow's plan.</h2>
-          <p className="signup__sub">One email. Every day. 7am IST.</p>
+          <p className="signup__sub">One email each morning. Study without planning it.</p>
 
           {status === 'success' ? (
             <p className="signup__success">
@@ -45,7 +45,7 @@ export default function Signup() {
                 disabled={status === 'submitting'}
               />
               <Button variant="solid" type="submit" disabled={status === 'submitting'}>
-                {status === 'submitting' ? 'Sending…' : 'Sign up →'}
+                {status === 'submitting' ? 'Sending…' : 'Get my first email →'}
               </Button>
               {status === 'error' && (
                 <p className="signup__error" role="alert">Enter a valid email address.</p>

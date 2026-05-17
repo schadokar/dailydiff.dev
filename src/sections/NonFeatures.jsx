@@ -13,7 +13,7 @@ export default function NonFeatures() {
       <div className="section__head">
         <span className="eyebrow">[05 · what this isn't]</span>
         <h2 className="section__title" id="nonfeatures-title">
-          Deliberately not those things.
+          Left out on purpose.
         </h2>
       </div>
       <ul className="bullets">

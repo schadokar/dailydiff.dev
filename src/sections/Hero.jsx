@@ -20,9 +20,9 @@ export default function Hero() {
       </p>
 
       <p className="hero__sub">
-        DailyDiff is a daily email that tells you exactly what to study today.
-        2–3 DSA problems, 2–3 curated engineering articles, and one sentence of
-        context on why they fit — delivered daily at 7am IST.
+        Every morning, one email tells you exactly what to study: 2–3 DSA
+        problems sequenced by topic, 2–3 engineering articles that fit, and a
+        sentence on why. No streaks, no guilt — just open and do.
       </p>
 
       <div className="hero__ctas">

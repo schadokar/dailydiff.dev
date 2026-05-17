@@ -1,6 +1,6 @@
 export default function Features() {
   const items = [
-    'Daily issue, every day, delivered ~7am IST.',
+    'Daily issue, delivered ~7am IST.',
     'DSA section — 2–3 Leetcode/GFG links, sequenced by topic and ramped difficulty.',
     'READ section — 2–3 curated engineering articles (Cloudflare, Netflix, Stripe, etc.), all anchored to one foundational concept.',
     'CONTEXT line — 1–2 sentences naming the day\'s concept and how the problems and articles map onto it.',

@@ -52,7 +52,7 @@ DailyDiff applies the same mechanic to a **structured, sequenced curriculum**: p
 
 ## Features
 
-- **Daily issue, Mon–Fri**, delivered ~7am IST.
+- **Daily issue, every day**, delivered ~7am IST.
 - **DSA section** — 2–3 Leetcode/GFG links, sequenced by topic week and ramped difficulty.
 - **READ section** — 2-3 curated engineering blog article (Cloudflare, Netflix, Stripe, etc.) paired with the day's DSA topic.
 - **CONTEXT line** — 1–2 sentences linking the problems and the article conceptually.
