@@ -13,7 +13,7 @@ export default function HowItWorks() {
     {
       num: '03',
       title: 'Open. Do. Close.',
-      body: 'Two or three problems, two or three articles, one context line. Then go.',
+      body: 'Practice (2–3 problems). Revise (one fundamental). Expand (one article). Then go.',
     },
   ];
 

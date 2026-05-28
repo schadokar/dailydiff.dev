@@ -3,13 +3,11 @@ const PROBLEMS = [
   { title: 'Minimum Window Substring', diff: 'hard' },
 ];
 
+const FUNDAMENTAL = { title: 'CAP Theorem', from: 'Martin Kleppmann · DDIA' };
+
 const ARTICLES = [
   { title: 'How we rate limit the edge', from: 'Cloudflare Engineering' },
-  { title: 'Designing data-intensive retries', from: 'Stripe Engineering' },
 ];
-
-// The foundational concept the day's READ articles are anchored to.
-const CONCEPT = 'fault tolerance';
 
 export default function TodayPlan() {
   return (
@@ -35,10 +33,21 @@ export default function TodayPlan() {
           </ul>
         </div>
 
+        <div className="today-plan__group today-plan__group--revise">
+          <div className="today-plan__group-label">revise</div>
+          <ul className="today-plan__list">
+            <li className="today-plan__item">
+              <span className="today-plan__arrow" aria-hidden="true">→</span>
+              <span className="today-plan__text">
+                {FUNDAMENTAL.title}
+                <span className="today-plan__from">{FUNDAMENTAL.from}</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
         <div className="today-plan__group">
-          <div className="today-plan__group-label">
-            read <span className="today-plan__concept">· {CONCEPT}</span>
-          </div>
+          <div className="today-plan__group-label">expand</div>
           <ul className="today-plan__list">
             {ARTICLES.map((a) => (
               <li key={a.title} className="today-plan__item">

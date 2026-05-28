@@ -38,19 +38,25 @@ export default function SampleIssueCard() {
           </ol>
         </div>
 
+        <div className="email-block email-block--fundamentals">
+          <div className="email-block__kicker">Fundamentals · Revise</div>
+          <ol className="email-block__list">
+            <li>
+              <div className="email-block__article">
+                <div className="email-block__title">CAP Theorem</div>
+                <div className="email-block__from">Martin Kleppmann · DDIA</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
         <div className="email-block">
-          <div className="email-block__kicker">Read · 2 Articles</div>
+          <div className="email-block__kicker">Read · 1 Article</div>
           <ol className="email-block__list">
             <li>
               <div className="email-block__article">
                 <div className="email-block__title">How we rate limit the edge</div>
                 <div className="email-block__from">Cloudflare Engineering</div>
-              </div>
-            </li>
-            <li>
-              <div className="email-block__article">
-                <div className="email-block__title">Designing data-intensive retries</div>
-                <div className="email-block__from">Stripe Engineering</div>
               </div>
             </li>
           </ol>

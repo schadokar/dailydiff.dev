@@ -589,6 +589,11 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--line);
   background: color-mix(in oklab, var(--panel-2) 65%, transparent);
 }
+.email-block--fundamentals {
+  border-color: color-mix(in oklab, var(--info) 50%, var(--line));
+  background: oklch(72% 0.08 230 / 0.08);
+}
+.email-block--fundamentals .email-block__kicker { color: var(--info); }
 .email-block__kicker {
   font-family: var(--font-mono); font-size: 11px;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -1206,6 +1211,13 @@ button { font: inherit; cursor: pointer; }
 }
 .curator__badge--med  { color: var(--acc); background: var(--acc-bg); }
 .curator__badge--hard { color: var(--err); background: color-mix(in oklab, var(--err) 12%, transparent); }
+.curator__from {
+  display: block;
+  font-family: var(--font-mono); font-size: 11.5px;
+  color: var(--fg-mute); letter-spacing: .01em;
+}
+.curator__group--revise .curator__group-label { color: var(--info); }
+.today-plan__group--revise .today-plan__group-label { color: var(--info); }
 
 .curator__footer {
   display: flex; align-items: baseline; gap: 12px;

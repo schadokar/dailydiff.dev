@@ -20,9 +20,10 @@ export default function Hero() {
       </p>
 
       <p className="hero__sub">
-        Every morning, one email tells you exactly what to study: 2–3 DSA
-        problems sequenced by topic, 2–3 engineering articles that fit, and a
-        sentence on why. No streaks, no guilt — just open and do.
+        Every morning, one email: problems to <em className="ital">practice</em>,
+        a fundamental to <em className="ital">revise</em>, and an article to{' '}
+        <em className="ital">expand</em> your thinking. No streaks, no guilt —
+        just open and do.
       </p>
 
       <div className="hero__ctas">

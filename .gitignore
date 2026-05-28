@@ -148,3 +148,6 @@ vite.config.ts.timestamp-*
 .claude
 .agents
 superpowers
+
+# Go module cache
+pkg/

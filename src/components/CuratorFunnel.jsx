@@ -47,13 +47,11 @@ const SOLVE = [
   { label: 'LC#76', diff: 'hard' },
 ];
 
+const FUNDAMENTAL = { title: 'CAP Theorem', from: 'Martin Kleppmann' };
+
 const READ = [
   { name: 'cloudflare', from: 'Cloudflare Engineering' },
-  { name: 'stripe', from: 'Stripe Engineering' },
 ];
-
-// The foundational concept the day's READ articles are anchored to.
-const CONCEPT = 'fault tolerance';
 
 export default function CuratorFunnel() {
   return (
@@ -105,10 +103,21 @@ export default function CuratorFunnel() {
           </ul>
         </div>
 
+        <div className="curator__group curator__group--revise">
+          <div className="curator__group-label">revise</div>
+          <ul className="curator__list">
+            <li className="curator__item">
+              <span className="curator__arrow" aria-hidden="true">→</span>
+              <span className="curator__text">
+                {FUNDAMENTAL.title}
+                <span className="curator__from">{FUNDAMENTAL.from}</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
         <div className="curator__group">
-          <div className="curator__group-label">
-            read <span className="curator__concept">· {CONCEPT}</span>
-          </div>
+          <div className="curator__group-label">expand</div>
           <ul className="curator__list">
             {READ.map((a) => (
               <li key={a.name} className="curator__item">
@@ -123,7 +132,7 @@ export default function CuratorFunnel() {
 
       <div className="curator__footer">
         <span className="curator__rule" aria-hidden="true">──</span>
-        <span className="curator__line">everything in · five things out</span>
+        <span className="curator__line">everything in · one sequenced issue out</span>
       </div>
     </div>
   );
