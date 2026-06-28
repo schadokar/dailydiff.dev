@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 32" width="200" height="32">
+  <text x="0" y="23" font-family="'JetBrains Mono', 'SF Mono', ui-monospace, monospace" font-size="22" font-weight="400" fill="#FFFFFF">daily</text>
+  <text x="75" y="23" font-family="'JetBrains Mono', 'SF Mono', ui-monospace, monospace" font-size="22" font-weight="700" fill="#22C55E">diff</text>
+</svg>

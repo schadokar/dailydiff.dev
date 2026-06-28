@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import Button from '../components/Button.jsx';
-import ThemeToggle from '../components/ThemeToggle.jsx';
 
 const links = [
   { label: 'Problem',      href: '#problem' },
@@ -26,7 +25,7 @@ export default function Nav() {
       <div className="nav__inner">
         <a className="brand" href="#top" aria-label="DailyDiff home">
           <span className="brand__mark" aria-hidden="true">//</span>
-          <span className="brand__word">DAILYDIFF</span>
+          <span className="brand__word">DAILY<span style={{color:'var(--acc)'}}>DIFF</span></span>
           <span className="brand__dot">·</span>
           <span className="brand__sub">STUDY OS</span>
         </a>
@@ -36,7 +35,6 @@ export default function Nav() {
         </nav>
 
         <div className="nav__cta">
-          <ThemeToggle />
           <Button variant="solid" href="#signup">Get tomorrow's email →</Button>
         </div>
 
