@@ -1,4 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 32" width="200" height="32">
-  <text x="0" y="23" font-family="'JetBrains Mono', 'SF Mono', ui-monospace, monospace" font-size="22" font-weight="400" fill="#0D0D0D">daily</text>
-  <text x="75" y="23" font-family="'JetBrains Mono', 'SF Mono', ui-monospace, monospace" font-size="22" font-weight="700" fill="#22C55E">diff</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 56" width="272" height="56" role="img" aria-label="DailyDiff.dev">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&amp;family=Architects+Daughter&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="272" height="56" rx="5" fill="#f6f2e8"/>
+  <!-- ∂ mark: Caveat 700, burnt sienna accent (light theme) -->
+  <text x="14" y="40"
+        font-family="'Caveat', 'Comic Sans MS', cursive"
+        font-size="38" font-weight="700"
+        fill="#8b5e2e" dominant-baseline="auto">∂</text>
+  <!-- DailyDiff.dev: tspan so .dev tracks DailyDiff's actual width -->
+  <text x="48" y="38"
+        font-family="'Architects Daughter', 'Comic Sans MS', cursive"
+        font-size="19" font-weight="400">
+    <tspan letter-spacing="1.8" fill="#1a1815">DailyDiff</tspan><tspan letter-spacing="0.5" fill="#6b6660">.dev</tspan>
+  </text>
 </svg>

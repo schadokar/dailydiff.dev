@@ -22,9 +22,9 @@ export default function Hero() {
       </p>
 
       <p className="hero__sub">
-        Every morning, one email: problems to <em className="ital">practice</em>,
-        a fundamental to <em className="ital">revise</em>, and an article to{' '}
-        <em className="ital">expand</em> your thinking. No streaks, no guilt —
+        Every morning, one email: problems to <em className="keywords">practice</em>,
+        a fundamental to <em className="keywords">revise</em>, and an article to{' '}
+        <em className="keywords">expand</em> your thinking. No streaks, no guilt —
         just open and do.
       </p>
 

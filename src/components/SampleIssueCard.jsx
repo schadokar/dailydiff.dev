@@ -20,7 +20,7 @@ export default function SampleIssueCard() {
         <div className="email-preview__subject">
           Issue #042 — Sliding window day
         </div>
-        <div className="email-preview__meta">to me · dailydiff.dev</div>
+        <div className="email-preview__meta">from · dailydiff.dev</div>
       </div>
 
       <div className="email-preview__body">

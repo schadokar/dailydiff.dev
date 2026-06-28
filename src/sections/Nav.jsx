@@ -10,8 +10,15 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -21,13 +28,10 @@ export default function Nav() {
   }, [open, close]);
 
   return (
-    <header className={`nav${open ? ' nav--open' : ''}`}>
+    <header className={`nav${open ? ' nav--open' : ''}${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="nav__inner">
         <a className="brand" href="#top" aria-label="DailyDiff home">
-          <span className="brand__mark" aria-hidden="true">//</span>
-          <span className="brand__word">DAILY<span style={{color:'var(--acc)'}}>DIFF</span></span>
-          <span className="brand__dot">·</span>
-          <span className="brand__sub">STUDY OS</span>
+          <img src="/wordmark-transparent.svg" alt="DailyDiff.dev" height="70" style={{display:'block'}} />
         </a>
 
         <nav className="nav__links" id="primary-nav" aria-label="Primary">

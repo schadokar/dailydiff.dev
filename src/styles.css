@@ -198,6 +198,13 @@ button { font: inherit; cursor: pointer; }
   backdrop-filter: saturate(130%) blur(10px);
   -webkit-backdrop-filter: saturate(130%) blur(10px);
   border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent);
+  transition: background .2s ease, border-color .2s ease, backdrop-filter .2s ease;
+}
+.nav--scrolled {
+  background: var(--bg);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: var(--line);
 }
 .nav__inner {
   max-width: var(--maxw); margin: 0 auto;
@@ -225,10 +232,10 @@ button { font: inherit; cursor: pointer; }
 .brand__sub  { color: var(--fg-mute); }
 
 .nav__links {
-  display: flex; gap: 26px;
+  display: flex; gap: 28px;
   justify-self: center;
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--fg-mute);
 }
 .nav__links a { transition: color .15s ease; font-weight: 600; }
@@ -322,7 +329,7 @@ button { font: inherit; cursor: pointer; }
 
 .btn--solid {
   background: var(--fg); color: var(--bg);
-  border-color: var(--fg); font-weight: 400;
+  border-color: var(--fg); font-weight: 550;
 }
 .btn--solid:hover { background: var(--acc); border-color: var(--acc); color: var(--bg); }
 
@@ -342,7 +349,7 @@ button { font: inherit; cursor: pointer; }
   background: color-mix(in oklab, var(--panel) 50%, transparent);
 }
 .tag--soon  { color: var(--acc); border-color: var(--acc-dim); }
-.tag--muted { color: var(--fg-mute); border-style: dashed; }
+.tag--muted { color: var(--fg);}
 
 /* ---- hero ---- */
 .hero {
@@ -369,12 +376,18 @@ button { font: inherit; cursor: pointer; }
   color: var(--acc);
   letter-spacing: 0;
 }
-.hero__thesis {
-  font-family: var(--font-mono);
-  font-size: 15px; color: var(--fg-mute);
-  margin: 0 0 20px;
+.keywords {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--acc);
+  letter-spacing: 0;
 }
-.hero__thesis .thesis__label { color: var(--acc-dim); margin-right: 10px; }
+.hero__thesis {
+  font-size: 18px; color: var(--fg);
+  margin: 0 0 20px;
+  letter-spacing: 0.04em;
+}
+.hero__thesis .thesis__label { color: var(--acc); margin-right: 10px; }
 .hero__sub {
   max-width: 66ch;
   font-size: clamp(17px, 1.6vw, 21px);
@@ -393,10 +406,11 @@ button { font: inherit; cursor: pointer; }
 
 .eyebrow {
   display: inline-block;
-  font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.07em;
+  font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--acc);
   padding-bottom: 4px; margin-bottom: 16px;
   border-bottom: 1px solid var(--acc-dim);
+  font-weight: 600;
 }
 
 .section__title {
@@ -551,8 +565,8 @@ button { font: inherit; cursor: pointer; }
 .email-preview__dot[data-c="g"] { background: var(--dot-g); }
 .email-preview__addr {
   margin-left: 8px;
-  font-family: var(--font-mono); font-size: 11.5px;
-  color: var(--fg-dim); letter-spacing: 0.02em;
+  font-family: var(--font-mono); font-size: 14px;
+  color: var(--fg); letter-spacing: 0.1em;
 }
 .email-preview__header {
   padding: 14px 16px 12px;
@@ -566,14 +580,15 @@ button { font: inherit; cursor: pointer; }
   font-size: 15px; font-weight: 700; color: var(--fg);
 }
 .email-preview__date {
-  font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-dim);
+  font-family: var(--font-mono); font-size: 14px; color: var(--fg);
 }
 .email-preview__subject {
   font-size: 16px; color: var(--fg);
   line-height: 1.35; margin-bottom: 4px;
 }
 .email-preview__meta {
-  font-family: var(--font-mono); font-size: 11.5px; color: var(--fg-mute);
+  font-family: var(--font-mono); font-size: 14px; color: var(--fg-mute);
+  letter-spacing: 0.02em;
 }
 .email-preview__body {
   padding: 14px 16px 16px;
@@ -595,9 +610,10 @@ button { font: inherit; cursor: pointer; }
 }
 .email-block--fundamentals .email-block__kicker { color: var(--info); }
 .email-block__kicker {
-  font-family: var(--font-mono); font-size: 11px;
+  font-family: var(--font-mono); font-size: 12px;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--acc); margin-bottom: 6px;
+  font-weight: 700;
 }
 .email-block--context .email-block__kicker { color: var(--fg-mute); }
 .email-block__list {
@@ -618,7 +634,8 @@ button { font: inherit; cursor: pointer; }
   font-size: 14px; color: var(--fg-1); line-height: 1.55;
 }
 .email-block__body em {
-  font-family: var(--font-hand); font-style: normal; font-weight: 700;
+  font-family: var(--font-hand); 
+  font-style: normal; font-weight: 700;
   color: var(--fg);
 }
 .email-block__article {
@@ -628,8 +645,8 @@ button { font: inherit; cursor: pointer; }
   font-size: 14px; color: var(--fg-1); line-height: 1.4;
 }
 .email-block__from {
-  font-family: var(--font-mono); font-size: 11.5px;
-  color: var(--fg-mute); letter-spacing: 0.01em;
+  font-family: var(--font-mono); font-size: 14px;
+  color: var(--fg-mute); letter-spacing: 0.03em;
 }
 .email-block--context .email-block__body { color: var(--fg-mute); }
 
@@ -642,10 +659,25 @@ button { font: inherit; cursor: pointer; }
   flex-wrap: wrap; gap: 12px;
 }
 .footer__copy {
-  font-family: var(--font-mono); font-size: 13px; color: var(--fg-dim);
+  font-family: var(--font-mono); font-size: 14px; color: var(--fg-dim);
+  display: flex; flex-direction: column; gap: 3px;
 }
+.footer__copy-main {
+  display: flex; align-items: center; gap: 4px;
+}
+.footer__copy-main strong { font-weight: 700; color: var(--fg); }
+.footer__wordmark { font-family: var(--font-mono); font-size: 16px; font-weight: 600; letter-spacing: 0.1em; }
+.footer__wordmark-daily { color: var(--fg); }
+.footer__wordmark-diff  { color: var(--acc); }
+.footer__wordmark-tld   { color: var(--fg-dim); font-weight: 400; }
+.footer__copy-sub {
+  font-size: 15px; color: var(--fg);
+  display: flex; align-items: center; gap: 5px; letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.footer__heart { color: #e85c5c; flex-shrink: 0; }
 .footer__link {
-  font-family: var(--font-mono); font-size: 13px; color: var(--fg-mute);
+  font-family: var(--font-mono); font-size: 15px; color: var(--fg);
   text-decoration: none; transition: color .15s ease;
   margin-right: 16px;
 }
@@ -675,11 +707,11 @@ button { font: inherit; cursor: pointer; }
   margin-bottom: 10px;
 }
 .retro-progress__week {
-  font-size: 11px; letter-spacing: 0.12em;
+  font-size: 14px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--acc);
 }
 .retro-progress__count {
-  font-size: 12px; color: var(--fg-mute);
+  font-size: 14px; color: var(--fg-mute);
 }
 .retro-progress__track {
   display: flex; gap: 6px;
@@ -699,12 +731,17 @@ button { font: inherit; cursor: pointer; }
   margin-top: 8px;
 }
 .retro-progress__pct {
-  font-size: 12px; color: var(--acc); font-weight: 700;
+  font-size: 14px; 
+  color: var(--acc); font-weight: 700;
+  letter-spacing: 0.1em;
 }
 .retro-progress__msg {
-  font-family: var(--font-hand);
-  font-size: 16px; color: var(--fg-mute); letter-spacing: 0;
+  font-size: 14px;
+  color: var(--fg-mute);
+  letter-spacing: 0.02em;
+  text-align: right;
 }
+
 .footer__social:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 
 /* ---- today plan (Insight-section rail) ---- */
@@ -716,7 +753,7 @@ button { font: inherit; cursor: pointer; }
 }
 .today-plan__eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
   margin-bottom: 4px;
 }
@@ -730,7 +767,7 @@ button { font: inherit; cursor: pointer; }
 }
 .today-plan__group-label {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: .15em; text-transform: uppercase;
   color: var(--fg-mute);
   margin-bottom: 8px;
   display: flex; align-items: center; gap: 10px;
@@ -741,7 +778,7 @@ button { font: inherit; cursor: pointer; }
   background: color-mix(in oklab, var(--line) 80%, transparent);
 }
 .today-plan__concept {
-  font-family: var(--font-hand);
+  /* font-family: var(--font-hand); */
   font-size: 15px; letter-spacing: 0; text-transform: none;
   color: var(--acc);
 }
@@ -752,6 +789,7 @@ button { font: inherit; cursor: pointer; }
 .today-plan__item {
   display: flex; align-items: baseline; gap: 8px;
   font-size: 14px; color: var(--fg-1); line-height: 1.45;
+  letter-spacing: 0.04em;
 }
 .today-plan__arrow {
   font-family: var(--font-mono); font-size: 12px;
@@ -761,8 +799,8 @@ button { font: inherit; cursor: pointer; }
   flex: 1; display: flex; flex-direction: column;
 }
 .today-plan__from {
-  font-family: var(--font-mono); font-size: 11.5px;
-  color: var(--fg-mute); letter-spacing: .01em;
+  font-family: var(--font-mono); font-size: 14px;
+  color: var(--fg-mute); letter-spacing: .04em;
 }
 .today-plan__badge {
   font-family: var(--font-mono); font-size: 12px;
@@ -779,8 +817,8 @@ button { font: inherit; cursor: pointer; }
   display: flex; justify-content: space-between; align-items: baseline;
 }
 .today-plan__footer-label {
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--fg-mute); letter-spacing: .02em;
+  font-family: var(--font-mono); font-size: 14px;
+  color: var(--fg); letter-spacing: .1em;
 }
 .today-plan__zero {
   font-family: var(--font-display); font-weight: 700;
@@ -801,7 +839,7 @@ button { font: inherit; cursor: pointer; }
   max-width: 420px;
 }
 .streak-heatmap__eyebrow {
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim); margin-bottom: 10px;
 }
 .streak-heatmap__grid {
@@ -837,12 +875,11 @@ button { font: inherit; cursor: pointer; }
   border-top: 1px solid var(--line);
 }
 .streak-heatmap__count {
-  font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
   color: var(--acc);
 }
 .streak-heatmap__msg {
-  font-family: var(--font-hand);
-  font-size: 14px; color: var(--fg-mute); letter-spacing: 0;
+  font-size: 14px; color: var(--fg); letter-spacing: 0.02em;
 }
 
 /* ---- frog card (HowItWorks-section rail) ---- */
@@ -855,7 +892,7 @@ button { font: inherit; cursor: pointer; }
 }
 .frog-card__eyebrow {
   font-family: var(--font-mono);
-  font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
   margin-bottom: 18px;
 }
@@ -883,8 +920,8 @@ button { font: inherit; cursor: pointer; }
   color: var(--fg-mute);
 }
 .frog-card__frog {
-  font-family: var(--font-hand);
-  font-size: 22px; letter-spacing: 0;
+  /* font-family: var(--font-hand); */
+  font-size: 18px; letter-spacing: 0;
   color: var(--acc);
 }
 
@@ -898,7 +935,7 @@ button { font: inherit; cursor: pointer; }
 }
 .calm-inbox__eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
   margin-bottom: 20px;
 }
@@ -926,7 +963,7 @@ button { font: inherit; cursor: pointer; }
   display: flex; align-items: center; gap: 12px;
   margin: 22px 0 14px;
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--fg-mute);
 }
 .calm-inbox__divider::before,
@@ -965,8 +1002,8 @@ button { font: inherit; cursor: pointer; }
   color: var(--fg-mute);
 }
 .calm-inbox__hand {
-  font-family: var(--font-hand);
-  font-size: 20px; color: var(--acc);
+  /* font-family: var(--font-hand); */
+  font-size: 18px; color: var(--acc);
 }
 
 /* ---- roadmap card (Signup-section rail) ---- */
@@ -979,7 +1016,7 @@ button { font: inherit; cursor: pointer; }
 }
 .roadmap-card__eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
   margin-bottom: 14px;
 }
@@ -999,7 +1036,7 @@ button { font: inherit; cursor: pointer; }
 }
 .roadmap-card__text { display: flex; flex-direction: column; gap: 2px; }
 .roadmap-card__title { font-size: 15px; line-height: 1.4; color: var(--fg-1); }
-.roadmap-card__sub   { font-size: 13px; line-height: 1.4; color: var(--fg-mute); }
+.roadmap-card__sub   { font-size: 14px; line-height: 1.4; color: var(--fg-dim); }
 .roadmap-card__footer {
   display: flex; align-items: baseline; gap: 12px;
   margin-top: 22px; padding-top: 18px;
@@ -1011,10 +1048,11 @@ button { font: inherit; cursor: pointer; }
 }
 .roadmap-card__line {
   font-family: var(--font-mono);
-  font-size: 15px; letter-spacing: .03em; color: var(--fg-mute);
+  font-size: 18px; letter-spacing: .03em; color: var(--fg-mute);
 }
 .roadmap-card__hand {
-  font-family: var(--font-hand); font-size: 20px; color: var(--acc);
+  /* font-family: var(--font-hand); */
+   font-size: 20px; color: var(--acc);
 }
 
 /* ---- career cycle (Problem-section rail) ---- */
@@ -1026,7 +1064,7 @@ button { font: inherit; cursor: pointer; }
 }
 .career-cycle__eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
 }
 .career-cycle__cap {
@@ -1067,14 +1105,15 @@ button { font: inherit; cursor: pointer; }
 }
 .career-cycle__note {
   display: block; font-family: var(--font-mono);
-  font-size: 12px; color: var(--fg-mute);
+  font-size: 14px; color: var(--fg-mute);
+  letter-spacing: .05em;
 }
 .career-cycle__step--waste b { color: var(--err); }
 .career-cycle__step--waste .career-cycle__dot { border-color: var(--err); }
 
 .career-cycle__back {
   position: relative;
-  font-family: var(--font-mono); font-size: 12px;
+  font-family: var(--font-mono); font-size: 14px;
   color: var(--err); margin-top: 16px; padding-left: 26px;
 }
 .career-cycle__back::before {
@@ -1099,7 +1138,7 @@ button { font: inherit; cursor: pointer; }
 }
 .curator__eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;
   color: var(--acc-dim);
   margin-bottom: 4px;
 }
@@ -1107,10 +1146,11 @@ button { font: inherit; cursor: pointer; }
   font-family: var(--font-display); font-weight: 700;
   font-size: 24px; line-height: 1.15; color: var(--fg);
   margin-bottom: 20px;
+  letter-spacing: 0.02em;
 }
 .curator__label {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: .08em; text-transform: uppercase;
   color: var(--fg-mute);
   margin-bottom: 10px;
 }
@@ -1178,7 +1218,7 @@ button { font: inherit; cursor: pointer; }
 }
 .curator__group-label {
   font-family: var(--font-mono);
-  font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
   color: var(--fg-mute);
   margin-bottom: 8px;
   display: flex; align-items: center; gap: 10px;
@@ -1188,7 +1228,7 @@ button { font: inherit; cursor: pointer; }
   background: color-mix(in oklab, var(--line) 80%, transparent);
 }
 .curator__concept {
-  font-family: var(--font-hand);
+  /* font-family: var(--font-hand); */
   font-size: 15px; letter-spacing: 0; text-transform: none;
   color: var(--acc);
 }
@@ -1219,7 +1259,7 @@ button { font: inherit; cursor: pointer; }
 .curator__badge--hard { color: var(--err); background: color-mix(in oklab, var(--err) 12%, transparent); }
 .curator__from {
   display: block;
-  font-family: var(--font-mono); font-size: 11.5px;
+  font-family: var(--font-mono); font-size: 14px;
   color: var(--fg-mute); letter-spacing: .01em;
 }
 .curator__group--revise .curator__group-label { color: var(--info); }
@@ -1235,7 +1275,9 @@ button { font: inherit; cursor: pointer; }
   color: var(--acc); flex-shrink: 0;
 }
 .curator__line {
-  font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em;
+  font-family: var(--font-mono); 
+  font-size: 15px; 
+  letter-spacing: .02em;
   color: var(--fg-mute);
 }
 

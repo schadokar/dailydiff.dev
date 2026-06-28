@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="DailyDiff mark">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="48" height="48" rx="8" fill="#0b0a08"/>
+  <text x="24" y="37"
+        font-family="'Caveat', 'Comic Sans MS', cursive"
+        font-size="36" font-weight="700"
+        text-anchor="middle"
+        fill="#cec05a">∂</text>
+</svg>
