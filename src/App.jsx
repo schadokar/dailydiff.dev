@@ -14,6 +14,7 @@ import StreakHeatmap from './components/StreakHeatmap.jsx';
 import FrogCard from './components/FrogCard.jsx';
 import CalmInbox from './components/CalmInbox.jsx';
 import CuratorFunnel from './components/CuratorFunnel.jsx';
+import Reveal from './components/Reveal.jsx';
 
 export default function App() {
   return (
@@ -24,34 +25,46 @@ export default function App() {
         <div className="layout">
           <Hero />
           <aside className="layout__rail layout__rail--hero">
-            <SampleIssueCard />
+            <Reveal delay={150}>
+              <SampleIssueCard />
+            </Reveal>
           </aside>
 
           <Problem />
           <aside className="layout__rail layout__rail--problem">
-            <CareerCycle />
+            <Reveal delay={150}>
+              <CareerCycle />
+            </Reveal>
           </aside>
 
           <Insight />
           <aside className="layout__rail layout__rail--insight">
-            <TodayPlan />
-            <div className="insight-rail__gap" />
-            <StreakHeatmap />
+            <Reveal delay={150}>
+              <TodayPlan />
+              <div className="insight-rail__gap" />
+              <StreakHeatmap />
+            </Reveal>
           </aside>
 
           <HowItWorks />
           <aside className="layout__rail layout__rail--how">
-            <FrogCard />
+            <Reveal delay={150}>
+              <FrogCard />
+            </Reveal>
           </aside>
 
           <Features />
           <aside className="layout__rail layout__rail--features">
-            <CuratorFunnel />
+            <Reveal delay={150}>
+              <CuratorFunnel />
+            </Reveal>
           </aside>
 
           <NonFeatures />
           <aside className="layout__rail layout__rail--nonfeatures">
-            <CalmInbox />
+            <Reveal delay={150}>
+              <CalmInbox />
+            </Reveal>
           </aside>
         </div>
 

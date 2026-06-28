@@ -1,3 +1,5 @@
+import Reveal from '../components/Reveal.jsx';
+
 export default function HowItWorks() {
   const steps = [
     {
@@ -19,6 +21,7 @@ export default function HowItWorks() {
 
   return (
     <section className="section" id="how-it-works" aria-labelledby="how-title">
+      <Reveal>
       <div className="section__head">
         <span className="eyebrow">[03 · how]</span>
         <h2 className="section__title" id="how-title">Three steps. No more.</h2>
@@ -34,6 +37,7 @@ export default function HowItWorks() {
           </div>
         ))}
       </div>
+      </Reveal>
     </section>
   );
 }

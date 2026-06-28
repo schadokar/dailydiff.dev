@@ -21,6 +21,9 @@ export default function Footer() {
     <footer className="footer">
       <p className="footer__copy">© dailydiff.dev · 2026</p>
       <div className="footer__socials">
+        <a className="footer__link" href="https://tally.so/r/YOUR_FORM_ID" target="_blank" rel="noopener noreferrer">
+          Leave Feedback
+        </a>
         <a className="footer__social" href="#" aria-label="DailyDiff on X (Twitter)">
           <XIcon />
         </a>

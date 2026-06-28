@@ -1,9 +1,11 @@
 import Tag from '../components/Tag.jsx';
 import Button from '../components/Button.jsx';
+import Reveal from '../components/Reveal.jsx';
 
 export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <Reveal>
       <div className="hero__meta">
         <Tag variant="soon">pre-launch</Tag>
         <Tag variant="muted">Daily · 7am IST</Tag>
@@ -30,6 +32,7 @@ export default function Hero() {
         <Button variant="solid" size="lg" href="#signup">Get tomorrow's email →</Button>
         <Button variant="ghost" size="lg" href="#how-it-works">See how it works</Button>
       </div>
+      </Reveal>
     </section>
   );
 }

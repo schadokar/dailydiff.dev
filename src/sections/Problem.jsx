@@ -1,6 +1,9 @@
+import Reveal from '../components/Reveal.jsx';
+
 export default function Problem() {
   return (
     <section className="section" id="problem" aria-labelledby="problem-title">
+      <Reveal>
       <div className="section__head">
         <span className="eyebrow">[01 · problem]</span>
         <h2 className="section__title" id="problem-title">
@@ -17,6 +20,7 @@ export default function Problem() {
         <li>Spend 30 minutes planning what to study instead of actually studying.</li>
         <li>Skip the session entirely because the choice feels overwhelming.</li>
       </ul>
+      </Reveal>
     </section>
   );
 }

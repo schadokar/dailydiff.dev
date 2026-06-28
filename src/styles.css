@@ -644,6 +644,12 @@ button { font: inherit; cursor: pointer; }
 .footer__copy {
   font-family: var(--font-mono); font-size: 13px; color: var(--fg-dim);
 }
+.footer__link {
+  font-family: var(--font-mono); font-size: 13px; color: var(--fg-mute);
+  text-decoration: none; transition: color .15s ease;
+  margin-right: 16px;
+}
+.footer__link:hover { color: var(--fg); text-decoration: underline; text-decoration-color: var(--fg-mute); text-underline-offset: 4px; }
 .footer__socials { display: flex; gap: 16px; align-items: center; }
 .footer__social {
   display: inline-flex; align-items: center; justify-content: center;
@@ -1231,4 +1237,41 @@ button { font: inherit; cursor: pointer; }
 .curator__line {
   font-family: var(--font-mono); font-size: 13px; letter-spacing: .02em;
   color: var(--fg-mute);
+}
+
+/* =====================================================================
+   ANIMATIONS & INTERACTIONS
+   ===================================================================== */
+
+/* Reveal on Scroll */
+.reveal-base {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card Hover States (Analog Lift) */
+.email-preview, .today-plan, .streak-heatmap, .frog-card, .curator, .calm-inbox, .roadmap-card, .signup__block, .retro-progress, .career-cycle {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.email-preview:hover, .today-plan:hover, .streak-heatmap:hover, .frog-card:hover, .curator:hover, .calm-inbox:hover, .roadmap-card:hover, .signup__block:hover, .retro-progress:hover, .career-cycle:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+  box-shadow: 0 16px 40px -16px rgba(0,0,0,0.6);
+}
+
+/* Form Error Shake */
+.shake {
+  animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+  40%, 60% { transform: translate3d(3px, 0, 0); }
 }

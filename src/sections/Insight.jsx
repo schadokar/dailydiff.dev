@@ -1,6 +1,9 @@
+import Reveal from '../components/Reveal.jsx';
+
 export default function Insight() {
   return (
     <section className="section" id="insight" aria-labelledby="insight-title">
+      <Reveal>
       <div className="section__head">
         <span className="eyebrow">[02 · insight]</span>
         <h2 className="section__title" id="insight-title">
@@ -33,6 +36,7 @@ export default function Insight() {
           <span className="retro-progress__msg">still ahead of zero.</span>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

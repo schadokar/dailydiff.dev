@@ -1,3 +1,5 @@
+import Reveal from '../components/Reveal.jsx';
+
 export default function NonFeatures() {
   const items = [
     'No original long-form content — links only, beyond the context line.',
@@ -10,6 +12,7 @@ export default function NonFeatures() {
 
   return (
     <section className="section" id="non-features" aria-labelledby="nonfeatures-title">
+      <Reveal>
       <div className="section__head">
         <span className="eyebrow">[05 · what this isn't]</span>
         <h2 className="section__title" id="nonfeatures-title">
@@ -19,6 +22,7 @@ export default function NonFeatures() {
       <ul className="bullets">
         {items.map((item, i) => <li key={i}>{item}</li>)}
       </ul>
+      </Reveal>
     </section>
   );
 }

@@ -1,3 +1,5 @@
+import Reveal from '../components/Reveal.jsx';
+
 export default function Features() {
   const items = [
     'Daily issue, delivered ~7am IST.',
@@ -19,6 +21,7 @@ export default function Features() {
 
   return (
     <section className="section" id="features" aria-labelledby="features-title">
+      <Reveal>
       <div className="section__head">
         <span className="eyebrow">[04 · what you get]</span>
         <h2 className="section__title" id="features-title">
@@ -34,6 +37,7 @@ export default function Features() {
           {topics.map((t) => <li key={t} className="tag">{t}</li>)}
         </ul>
       </div>
+      </Reveal>
     </section>
   );
 }
