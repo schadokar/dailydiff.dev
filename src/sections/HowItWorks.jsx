@@ -10,7 +10,7 @@ export default function HowItWorks() {
     {
       num: '02',
       title: 'Email lands at 7am IST, every day.',
-      body: 'Same issue for everyone in V1. No per-user state, no personalisation tax.',
+      body: 'Same issue for everyone.',
     },
     {
       num: '03',
@@ -25,6 +25,11 @@ export default function HowItWorks() {
       <div className="section__head">
         <span className="eyebrow">[03 · how]</span>
         <h2 className="section__title" id="how-title">Three steps. No more.</h2>
+        <span className="doodle" style={{ left: 0, bottom: '-14px', width: '220px', height: '18px' }} aria-hidden="true">
+          <svg viewBox="0 0 220 18" width="220" height="18">
+            <path d="M2 10 C 20 2, 38 18, 56 10 S 92 2, 110 10 S 146 18, 164 10 S 200 2, 218 10" />
+          </svg>
+        </span>
       </div>
       <div className="steps">
         {steps.map(s => (

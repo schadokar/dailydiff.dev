@@ -50,9 +50,9 @@ export default function Signup() {
   return (
     <section className="signup" id="signup" aria-labelledby="signup-title">
       <div className="signup__grid">
-        <Reveal>
+        <Reveal className="signup__col-left">
         <div className="signup__block">
-          <h2 className="signup__title" id="signup-title">Get tomorrow's plan.</h2>
+          <h2 className="signup__title" id="signup-title">Get <span className="highlight highlight--yellow">tomorrow's plan</span>.</h2>
           <p className="signup__sub">One email each morning. Study without planning it.</p>
 
           {status === 'success' ? (

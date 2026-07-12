@@ -2,12 +2,9 @@ import Reveal from '../components/Reveal.jsx';
 
 export default function NonFeatures() {
   const items = [
-    'No original long-form content — links only, beyond the context line.',
-    'No hosted or reproduced problem statements.',
-    'No per-user progress tracking in V1.',
-    'No paid tier, courses, or premium content.',
-    'No second daily email for sponsors.',
-    'No paywall on the daily issue.',
+    <span>No original essays or long reads —<span className="bullet-sub">Just the plan and the links. Open, do, done.</span></span>,
+    <span>No paid tier or premium content —<span className="bullet-sub">Everyone gets the same issue.</span></span>,
+    <span>No paywall on the daily email —<span className="bullet-sub">The daily plan stays free.</span></span>,
   ];
 
   return (

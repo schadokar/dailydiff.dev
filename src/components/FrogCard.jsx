@@ -8,7 +8,7 @@ export default function FrogCard() {
       <div className="frog-card__eyebrow">[the frog · 7am]</div>
 
       <p className="frog-card__headline">
-        One hard thing, served before the day can argue.
+        Today's plan, ready before you are.
       </p>
 
       <p className="frog-card__body">

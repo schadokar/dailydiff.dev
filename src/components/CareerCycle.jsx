@@ -2,7 +2,7 @@ const STAGES = [
   { title: 'Panic prep', note: 'weeks of cramming before applying' },
   { title: 'Land the job', note: 'studying stops completely' },
   { title: 'Skills decay', note: '2 years pass, fundamentals fade' },
-  { title: 'Switch jobs → relearn', note: 'rediscover the same ground, from zero', waste: true },
+  { title: 'Switch job → relearn', note: 'rediscover the same ground, from zero', waste: true },
 ];
 
 export default function CareerCycle() {

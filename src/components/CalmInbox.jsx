@@ -12,7 +12,7 @@ export default function CalmInbox() {
       role="img"
       aria-label="Your inbox with DailyDiff — one email, and the nags that never arrive"
     >
-      <div className="calm-inbox__eyebrow">[your inbox · still quiet]</div>
+      <div className="curator__eyebrow">[your inbox · still quiet]</div>
 
       <div className="calm-inbox__real">
         <div className="calm-inbox__from">

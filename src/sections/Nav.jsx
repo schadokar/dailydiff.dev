@@ -31,7 +31,7 @@ export default function Nav() {
     <header className={`nav${open ? ' nav--open' : ''}${scrolled ? ' nav--scrolled' : ''}`}>
       <div className="nav__inner">
         <a className="brand" href="#top" aria-label="DailyDiff home">
-          <img src="/wordmark-transparent.svg" alt="DailyDiff.dev" height="70" style={{display:'block'}} />
+          <img src="/wordmark-logo.png" alt="DailyDiff.dev" height="44" />
         </a>
 
         <nav className="nav__links" id="primary-nav" aria-label="Primary">

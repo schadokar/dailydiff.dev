@@ -15,11 +15,12 @@ import FrogCard from './components/FrogCard.jsx';
 import CalmInbox from './components/CalmInbox.jsx';
 import CuratorFunnel from './components/CuratorFunnel.jsx';
 import Reveal from './components/Reveal.jsx';
+import SketchbookGrid from './components/SketchbookGrid.jsx';
 
 export default function App() {
   return (
     <>
-      <div className="grain" aria-hidden="true" />
+      <SketchbookGrid />
       <Nav />
       <main id="top">
         <div className="layout">

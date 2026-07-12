@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="footer__copy">
         <span className="footer__copy-main">
           <FaCopyright size={13} />
-          <span className="footer__wordmark">
+          <span className="footer__wordmark highlight highlight--yellow">
             <span className="footer__wordmark-daily">Daily</span>
             <span className="footer__wordmark-diff">Diff</span>
             <span className="footer__wordmark-tld">.dev</span>
@@ -24,7 +24,7 @@ export default function Footer() {
           <strong>· 2026</strong>
         </span>
         <span className="footer__copy-sub">
-          Made with <FaHeart size={15} className="footer__heart" /> in India
+          Made with <FaHeart size={15} className="footer__heart" /> in <span className="footer__india">INDIA</span>
         </span>
       </div>
       <div className="footer__socials">
@@ -32,9 +32,11 @@ export default function Footer() {
           Leave Feedback
         </a>
 
+    <span className='highlight highlight--blue'>
         <a href='https://x.com/getdailydiff' target="_blank" rel="noopener noreferrer" aria-label="DailyDiff on X">
           <BsTwitterX size={14} />
         </a>
+    </span>
         {/* <BsInstagram /> */}
       </div>
     </footer>
