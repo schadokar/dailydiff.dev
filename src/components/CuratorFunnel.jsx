@@ -13,7 +13,7 @@ function logoExt(name) {
 function Logo({ name }) {
   return (
     <img
-      src={`/logos/${name}.${logoExt(name)}`}
+      src={`${import.meta.env.BASE_URL}logos/${name}.${logoExt(name)}`}
       alt={name}
       style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
     />
