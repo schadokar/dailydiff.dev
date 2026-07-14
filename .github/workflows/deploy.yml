@@ -21,6 +21,8 @@ jobs:
           node-version: 24
       - run: npm ci
       - run: npm run build
+        env:
+          VITE_LOOPS_FORM_ENDPOINT: ${{ secrets.VITE_LOOPS_FORM_ENDPOINT }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

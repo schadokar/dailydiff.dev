@@ -622,8 +622,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 14px 0 0;
 }
 .signup__success {
-  font-family: var(--font-head); font-size: 17px; color: var(--green);
+  font-family: var(--font-head); font-size: 18px; color: var(--ink);
   padding: 14px 0;
+  font-weight: 550;
 }
 .signup__error {
   font-family: var(--font-head); font-size: 15px; color: var(--coral);

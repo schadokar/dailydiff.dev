@@ -56,7 +56,7 @@ export default function Signup() {
           <p className="signup__sub">One email each morning. Study without planning it.</p>
 
           {status === 'success' ? (
-            <p className="signup__success">
+            <p className="signup__success highlight highlight--blue">
               ✓ You're on the list. First email lands tomorrow morning.
             </p>
           ) : (
